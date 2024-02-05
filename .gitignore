@@ -33,3 +33,7 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+#  misc
+babel.config.js 
+jest.config.js
