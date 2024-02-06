@@ -41,7 +41,7 @@ const MyGroupsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4f6d7a',
+    backgroundColor: '#84b5f0',
     alignItems: 'center',
     paddingTop: 50, // Adjust if necessary to position the header
   },

@@ -93,7 +93,7 @@ const PreferencesScreen = ({ navigation, presenter }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#64b5f6',
+    backgroundColor: '#84b5f0',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,

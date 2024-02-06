@@ -150,7 +150,7 @@ const GroupDetailsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#64b5f6',
+    backgroundColor: '#84b5f0',
     padding: 20,
   },
   title: {

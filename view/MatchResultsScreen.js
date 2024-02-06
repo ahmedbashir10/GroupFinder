@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.5,
     padding: 20,
-    backgroundColor: '#4f6d7a',
+    backgroundColor: '#84b5f0',
   },
   header: {
     fontSize: 24,
@@ -67,11 +67,13 @@ const styles = StyleSheet.create({
   groupItem: {
     backgroundColor: 'white',
     padding: 20,
-    alignSelf: 'center', // Align group item to center horizontally
-    width: '60%', // Reduce width to match the design
+    alignSelf: 'center', // Center group item to center horizontally
+    width: '80%', // Adjust the width to match the design
+    flexDirection: 'row', // Layout children in a row
+    justifyContent: 'space-between', // Space out children to start and end of container
     marginBottom: 10,
-    borderWidth: 1, // Add border to match the prototype
-    borderColor: '#ccc', // Border color similar to prototype
+    borderWidth: 1,
+    borderColor: '#ccc',
   },
   groupName: {
     fontWeight: 'bold',

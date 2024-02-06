@@ -29,7 +29,7 @@ const WelcomeScreen = ({ onNavigate }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#64b5f6", // Replace with the exact color code from your design
+    backgroundColor: "#4f6d7a", // Replace with the exact color code from your design
     alignItems: "center",
     justifyContent: "center",
     padding: 20,

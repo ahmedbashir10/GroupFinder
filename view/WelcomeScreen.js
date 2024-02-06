@@ -14,7 +14,7 @@ const WelcomeScreen = ({ navigation, presenter }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>WELCOME TO GROUP FINDER</Text>
-      <Text>What is your name?</Text>
+      <Text style={styles.promptText}>What is your name?</Text>
       <TextInput
         style={styles.input}
         placeholder="Full Name"
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center', // centers vertically
     alignItems: 'center', // centers horizontally
-    backgroundColor: '#4f6d7a',
+    backgroundColor: '#84b5f0',
     padding: 20,
   },
   title: {
@@ -43,13 +43,20 @@ const styles = StyleSheet.create({
     color: 'white',
     marginBottom: 20,
   },
+  promptText: {
+    fontSize: 18, // Make the font size larger
+    color: '#FFFFFF', // Change the color to white for visibility
+    marginBottom: 10, // Add some space before the input field
+  },
   input: {
     borderWidth: 1,
     borderColor: 'white',
     padding: 10,
-    width: '40%', // Adjust width as needed to make the input smaller
+    width: '40%',
     marginBottom: 20,
-    alignSelf: 'center', // Ensures that the input is centered in the screen
+    alignSelf: 'center',
+    color: 'white', // Change text color
+    placeholderTextColor: '#A9A9A9', // Light grey color for placeholder text
   },
   // Add a style for the button if needed
   button: {
