@@ -32,8 +32,8 @@ const WelcomeScreen = ({ navigation, presenter }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', // centers vertically
+    alignItems: 'center', // centers horizontally
     backgroundColor: '#4f6d7a',
     padding: 20,
   },
@@ -47,8 +47,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     padding: 10,
-    width: '100%',
+    width: '40%', // Adjust width as needed to make the input smaller
     marginBottom: 20,
+    alignSelf: 'center', // Ensures that the input is centered in the screen
+  },
+  // Add a style for the button if needed
+  button: {
+    // Define your button styles here if needed
   },
 });
 

@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: "center",
     justifyContent: "center",
-    width: "80%",
+    width: "20%",
     borderRadius: 20,
     marginBottom: 20, // Add space between button and footer
   },
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4caf50', // Match this with your app's footer button color
     paddingVertical: 10,
     paddingHorizontal: 30,
-    borderRadius: 5,
+    borderRadius: 20,
   },
   footerButtonText: {
     color: '#ffffff', // Match this with your app's footer button text color

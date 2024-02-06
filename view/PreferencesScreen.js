@@ -104,18 +104,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   label: {
-    alignSelf: 'flex-start',
-    marginLeft: 20,
+    alignSelf: 'center', // Changed this from 'flex-start' to 'center'
     color: '#ffffff',
     marginBottom: 10,
   },
   picker: {
-    width: '90%',
+    width: '30%',
     backgroundColor: '#ffffff',
     marginBottom: 20,
+
   },
   input: {
-    width: '90%',
+    width: '30%',
     backgroundColor: '#ffffff',
     marginBottom: 20,
     paddingHorizontal: 10,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   sizeInputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '90%',
+    width: '30%',
   },
   sizeInput: {
     width: '40%',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
+    width: '20%',
     borderRadius: 20,
     marginBottom: 20,
   },
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
+    width: '20%',
     borderRadius: 20,
   },
   buttonText: {

@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
+    alignSelf: 'center', // Add this line to center the title
   },
   preferencesSection: {
     marginBottom: 20,
@@ -166,25 +167,37 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 10,
     marginBottom: 10,
+    textAlign: 'center',
+    alignSelf: 'center', // Center the members section
+    width: '40%',
+    
   },
   membersSection: {
     marginBottom: 20,
+    alignSelf: 'center', // Center the members section
+    width: '40%',
   },
   memberItem: {
     backgroundColor: 'white',
     padding: 10,
     marginBottom: 10,
+    flexDirection: 'row', // Align the name and email side by side
+    justifyContent: 'space-between',
   },
   memberName: {
     fontWeight: 'bold',
+    flex: 1,
   },
   memberEmail: {
     color: 'gray',
+    flex: 1, // Allow the email to grow
+    textAlign: 'right',
   },
   membersCount: {
     fontSize: 18,
     color: 'white',
     marginBottom: 20,
+    alignSelf: 'center',
   },
   joinButton: {
     backgroundColor: '#4caf50',
@@ -192,6 +205,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     marginBottom: 10,
+    alignSelf: 'center',
   },
   joinButtonText: {
     color: 'white',
@@ -202,6 +216,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
+    alignSelf: 'center',
   },
   backButtonText: {
     color: 'white',

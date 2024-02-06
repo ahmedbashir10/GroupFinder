@@ -53,7 +53,7 @@ const MatchResultsScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.5,
     padding: 20,
     backgroundColor: '#4f6d7a',
   },
@@ -61,23 +61,31 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
+    textAlign: 'center', // Center text horizontally
     marginBottom: 20,
   },
   groupItem: {
     backgroundColor: 'white',
     padding: 20,
+    alignSelf: 'center', // Align group item to center horizontally
+    width: '60%', // Reduce width to match the design
     marginBottom: 10,
+    borderWidth: 1, // Add border to match the prototype
+    borderColor: '#ccc', // Border color similar to prototype
   },
   groupName: {
     fontWeight: 'bold',
+    textAlign: 'center', // Center group name text
   },
   subHeader: {
     fontSize: 20,
     color: 'white',
+    textAlign: 'center', // Center text horizontally
     marginTop: 20,
   },
   subText: {
     color: 'white',
+    textAlign: 'center', // Center text horizontally
     marginBottom: 10,
   },
   backButton: {
@@ -85,12 +93,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
+    alignSelf: 'center', // Align button to center horizontally
     marginTop: 20,
   },
   backButtonText: {
     color: 'white',
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: 'center', // Center text horizontally
   },
 });
 

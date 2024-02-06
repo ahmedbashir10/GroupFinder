@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#4f6d7a',
     alignItems: 'center',
-    paddingTop: 50,
+    paddingTop: 50, // Adjust if necessary to position the header
   },
   header: {
     fontSize: 24,
@@ -53,12 +53,13 @@ const styles = StyleSheet.create({
   },
   groupItem: {
     backgroundColor: 'white',
-    width: '90%',
+    width: '100%', // Reduced from 90% to make it a bit bigger
     padding: 20,
-    marginBottom: 10,
+    marginBottom: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    alignSelf: 'center', // Center group items
   },
   groupName: {
     fontWeight: 'bold',
@@ -67,26 +68,27 @@ const styles = StyleSheet.create({
     color: 'gray',
   },
   footer: {
-    position: 'absolute',
-    bottom: 0,
     flexDirection: 'row',
-    width: '100%',
+    width: '40%',
     borderTopColor: 'gray',
     borderTopWidth: 1,
+   // position: 'absolute', // Change to 'relative' if you don't want it stuck to the bottom
+    bottom: 50, // Raise the footer up from the bottom
   },
   footerButton: {
     flex: 1,
-    padding: 20,
+    paddingVertical: 10, // Reduced padding for smaller buttons
+    paddingHorizontal: 20, // Adjust horizontal padding if needed
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#6a7ba2', // inactive tab color
+    backgroundColor: '#6a7ba2', // Inactive tab color
   },
   activeTab: {
-    backgroundColor: '#8a9bb2', // active tab color
+    backgroundColor: '#8a9bb2', // Active tab color
   },
   footerButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 14, // Reduced font size for footer text
   },
 });
 
