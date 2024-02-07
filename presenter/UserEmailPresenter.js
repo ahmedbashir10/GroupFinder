@@ -8,7 +8,6 @@ class UserEmailPresenter {
   }
 
   saveUserEmail(email) {
-    // You would add validation logic for the email here
     return this.model.saveUserEmail(email);
   }
 }

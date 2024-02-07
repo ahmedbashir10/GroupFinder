@@ -8,7 +8,6 @@ class UserModel {
   
     saveUserName(name) {
       this.userName = name;
-      // Save the user name to persistent storage
     }
   
     saveUserEmail(email) {
@@ -20,7 +19,6 @@ class UserModel {
   
     getUserEmail() {
       return this.userEmail;
-      // Load the user email from persistent storage
     }
 
     saveCourseID(courseID) {

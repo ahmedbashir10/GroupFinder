@@ -13,6 +13,5 @@ export default class PreferencesPresenter {
 
   savePreferences(preferences) {
     this.model.savePreferences(preferences);
-    // Update the view or navigate away if necessary
   }
 }

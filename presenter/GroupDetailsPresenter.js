@@ -11,7 +11,6 @@ class GroupDetailsPresenter {
     this.view.updateGroupDetails(groupDetails);
   }
 
-  // Add more methods as needed for interaction logic
 }
 
 export default GroupDetailsPresenter;

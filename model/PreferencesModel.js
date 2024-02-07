@@ -10,11 +10,9 @@ export default class PreferencesModel {
   
     savePreferences(preferences) {
       this.preferences = preferences;
-      // Save to persistent storage if necessary
     }
   
     getPreferences() {
-      // Load from persistent storage if necessary
       return this.preferences;
     }
   }

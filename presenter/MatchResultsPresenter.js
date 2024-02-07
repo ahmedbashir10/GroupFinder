@@ -2,7 +2,6 @@
 export default class MatchResultsPresenter {
     constructor(view) {
       this.view = view;
-      // this.model can be initialized here if you have a MatchResultsModel
     }
   
     loadMatches() {

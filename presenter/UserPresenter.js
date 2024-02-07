@@ -1,4 +1,3 @@
-// import UserModel from './model/UserModel';
 import UserModel from "../model/UserModel";
 
 class UserPresenter {
@@ -10,8 +9,7 @@ class UserPresenter {
   onNameSubmit(name) {
     // Validate the name if necessary
     this.model.saveUserName(name);
-    // Navigate to the next screen or update the view if needed
-    this.view.showNextScreen(); // You would actually use navigation logic, e.g., using React Navigation
+    this.view.showNextScreen(); 
   }
 }
 

@@ -1,5 +1,4 @@
-// CourseIDPresenter.js
-import UserModel from './UserModel'; // Assuming you store course IDs in the UserModel
+import UserModel from './UserModel'; 
 
 class CourseIDPresenter {
   constructor(model) {
