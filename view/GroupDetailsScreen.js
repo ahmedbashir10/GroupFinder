@@ -19,7 +19,6 @@ const GroupDetailsScreen = ({ navigation }) => {
   };
 
   const handleJoinGroup = () => {
-    // Here you will handle the join group logic
     navigation.navigate('MyGroup');
   };
 
@@ -27,13 +26,11 @@ const GroupDetailsScreen = ({ navigation }) => {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{groupDetails.name}</Text>
       
-      {/* Preferences section */}
       <View style={styles.preferencesSection}>
         <Text style={styles.preferenceItem}>Location Preference: {groupDetails.preferences.location}</Text>
         <Text style={styles.preferenceItem}>Grade Preference: {groupDetails.preferences.grade}</Text>
       </View>
 
-      {/* Members section */}
       <View style={styles.membersSection}>
         {groupDetails.members.map((member, index) => (
           <View key={index} style={styles.memberItem}>
@@ -67,7 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
-    alignSelf: 'center', // Add this line to center the title
+    alignSelf: 'center', 
   },
   preferencesSection: {
     marginBottom: 20,

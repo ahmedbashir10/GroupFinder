@@ -7,7 +7,6 @@ const WelcomeScreen = ({ navigation, presenter }) => {
 
   const handleNameSubmit = () => {
    // presenter.saveUserName(name);
-    // Assuming you have another screen called 'GroupList' that you want to navigate to
     navigation.navigate('Email');
   };
 
@@ -58,10 +57,7 @@ const styles = StyleSheet.create({
     color: 'white', // Change text color
     placeholderTextColor: '#A9A9A9', // Light grey color for placeholder text
   },
-  // Add a style for the button if needed
-  button: {
-    // Define your button styles here if needed
-  },
+  
 });
 
 export default WelcomeScreen;

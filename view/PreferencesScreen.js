@@ -9,16 +9,8 @@ const PreferencesScreen = ({ navigation, presenter }) => {
   const [maxSize, setMaxSize] = useState("");
 
   const handleFindMatch = () => {
-    // You might want to call a method on the presenter to process the preferences
-    // presenter.processPreferences({
-    //   location,
-    //   grade,
-    //   specificPreference,
-    //   minSize,
-    //   maxSize
-    // });
-    // Navigate to the next screen or show results
-    navigation.navigate('MatchResults'); // Replace with your actual next screen's name
+    
+    navigation.navigate('MatchResults'); 
   };
 
   return (
@@ -104,7 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   label: {
-    alignSelf: 'center', // Changed this from 'flex-start' to 'center'
+    alignSelf: 'center',
     color: '#ffffff',
     marginBottom: 10,
   },

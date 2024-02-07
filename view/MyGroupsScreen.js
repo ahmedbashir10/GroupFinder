@@ -23,7 +23,7 @@ const MyGroupsScreen = ({ navigation }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
-          onPress={() => navigation.navigate('Preferences')} // Replace with your actual navigation call
+          onPress={() => navigation.navigate('Preferences')} 
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#84b5f0',
     alignItems: 'center',
-    paddingTop: 50, // Adjust if necessary to position the header
+    paddingTop: 50, 
   },
   header: {
     fontSize: 24,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   groupItem: {
     backgroundColor: 'white',
-    width: '100%', // Reduced from 90% to make it a bit bigger
+    width: '100%', 
     padding: 20,
     marginBottom: 30,
     flexDirection: 'row',
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     width: '40%',
     borderTopColor: 'gray',
     borderTopWidth: 1,
-   // position: 'absolute', // Change to 'relative' if you don't want it stuck to the bottom
+    position: 'absolute', // Change to 'relative' if you don't want it stuck to the bottom
     bottom: 50, // Raise the footer up from the bottom
   },
   footerButton: {
