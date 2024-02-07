@@ -46,13 +46,13 @@ const CourseIDScreen = ({ navigation, presenter }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
-          onPress={() => navigation.navigate('FindGroup')} // Replace with your actual navigation call
+          onPress={() => navigation.navigate('Preferences')} // Replace with your actual navigation call
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.footerButton}
-          onPress={() => navigation.navigate('MyGroups')} // Replace with your actual navigation call
+          onPress={() => navigation.navigate('MyGroup')} // Replace with your actual navigation call
         >
           <Text style={styles.footerButtonText}>My Groups</Text>
         </TouchableOpacity>

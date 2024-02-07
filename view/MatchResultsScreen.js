@@ -23,7 +23,7 @@ const MatchResultsScreen = ({ navigation }) => {
     <ScrollView style={styles.container}>
       <Text style={styles.header}>YOU GOT {loadedMatches.length} MATCHES!</Text>
       {loadedMatches.map((group, index) => (
-        <TouchableOpacity key={index} style={styles.groupItem} onPress={() => handleNavigateToGroupDetails(group)}>
+        <TouchableOpacity key={index} style={styles.groupItem} onPress={handleNavigateToGroupDetails}>
           <Text style={styles.groupName}>{group.name}</Text>
           <Text>{group.placesLeft} places left</Text>
           {/* Added TouchableOpacity for navigation */}
@@ -34,10 +34,12 @@ const MatchResultsScreen = ({ navigation }) => {
        <Text style={styles.subText}>Want to join anyways?</Text>
       
        {otherGroupsData.map((group, index) => (
+        <TouchableOpacity onPress={handleNavigateToGroupDetails}>
         <View key={index} style={styles.groupItem}>
            <Text style={styles.groupName}>{group.name}</Text>
            <Text>{group.placesLeft} places left</Text>
          </View>
+         </TouchableOpacity>
        ))}
       
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -46,9 +48,6 @@ const MatchResultsScreen = ({ navigation }) => {
     </ScrollView>
   );
 };
-
-
-// ... your StyleSheet and other code
 
 
 const styles = StyleSheet.create({

@@ -23,13 +23,13 @@ const MyGroupsScreen = ({ navigation }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
-          onPress={() => navigation.navigate('FindGroupScreen')} // Replace with your actual navigation call
+          onPress={() => navigation.navigate('Preferences')} // Replace with your actual navigation call
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.footerButton, styles.activeTab]}
-          onPress={() => {}}
+          onPress={() => {navigation.navigate('MyGroup')}}
         >
           <Text style={styles.footerButtonText}>My Groups</Text>
         </TouchableOpacity>
