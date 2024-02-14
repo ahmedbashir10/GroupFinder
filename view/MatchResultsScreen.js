@@ -33,12 +33,13 @@ const MatchResultsScreen = ({ navigation }) => {
        <Text style={styles.subHeader}>You did not match with these...</Text>
        <Text style={styles.subText}>Want to join anyways?</Text>
       
-       {otherGroupsData.map((group) => (
-  <TouchableOpacity key={group.id} onPress={handleNavigateToGroupDetails} style={styles.groupItem}>
+       {otherGroupsData.map((group, index) => (
+  <TouchableOpacity key={index} onPress={handleNavigateToGroupDetails} style={styles.groupItem}>
     <Text style={styles.groupName}>{group.name}</Text>
     <Text>{group.placesLeft} places left</Text>
   </TouchableOpacity>
 ))}
+
 
       
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
