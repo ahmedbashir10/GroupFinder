@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Picker } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { Picker } from '@react-native-picker/picker'; // Corrected import
 
-const PreferencesScreen = ({ navigation, presenter }) => {
+const PreferencesScreen = ({ navigation }) => {
   const [location, setLocation] = useState("remote");
   const [grade, setGrade] = useState("flexible");
   const [specificPreference, setSpecificPreference] = useState("");
@@ -9,7 +10,6 @@ const PreferencesScreen = ({ navigation, presenter }) => {
   const [maxSize, setMaxSize] = useState("");
 
   const handleFindMatch = () => {
-    
     navigation.navigate('MatchResults'); 
   };
 
@@ -17,7 +17,7 @@ const PreferencesScreen = ({ navigation, presenter }) => {
     <View style={styles.container}>
       <Text style={styles.header}>Preferences</Text>
 
-      <Text style={styles.label}>Location references</Text>
+      <Text style={styles.label}>Location preferences</Text>
       <Picker
         selectedValue={location}
         style={styles.picker}
@@ -81,6 +81,9 @@ const PreferencesScreen = ({ navigation, presenter }) => {
     </View>
   );
 };
+
+// Your StyleSheet remains the same
+
 
 const styles = StyleSheet.create({
   container: {
