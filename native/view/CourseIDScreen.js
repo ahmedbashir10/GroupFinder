@@ -46,7 +46,7 @@ const CourseIDScreen = ({ navigation, presenter }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
-          onPress={() => navigation.navigate('Preferences')} // Replace with your actual navigation call
+          onPress={() => navigation.navigate('CourseID')} // Replace with your actual navigation call
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>

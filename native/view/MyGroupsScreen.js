@@ -23,7 +23,7 @@ const MyGroupsScreen = ({ navigation }) => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
-          onPress={() => navigation.navigate('Preferences')} 
+          onPress={() => navigation.navigate('CourseID')} 
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>
