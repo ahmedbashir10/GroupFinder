@@ -37,3 +37,7 @@ yarn-error.*
 #  misc
 babel.config.js 
 jest.config.js
+
+
+# vscode
+.vscode
