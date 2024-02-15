@@ -1,16 +1,53 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+// import { Picker } from '@react-native-picker/picker'; // Corrected import
+
+// const PreferencesScreen = ({ navigation }) => {
+//   const [location, setLocation] = useState("remote");
+//   const [grade, setGrade] = useState("flexible");
+//   const [specificPreference, setSpecificPreference] = useState("");
+//   const [minSize, setMinSize] = useState("");
+//   const [maxSize, setMaxSize] = useState("");
+
+//   const handleFindMatch = () => {
+//     navigation.navigate('MatchResults'); 
+//   };
+
+
+
+
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { Picker } from '@react-native-picker/picker'; // Corrected import
+import { Picker } from '@react-native-picker/picker';
+import PreferencesPresenter from '../presenter/PreferencesPresenter';
 
 const PreferencesScreen = ({ navigation }) => {
+  const [presenter, setPresenter] = useState(null);
+
+  // Initialize presenter and load preferences on component mount
+  useEffect(() => {
+    const prefPresenter = new PreferencesPresenter(navigation);
+    setPresenter(prefPresenter);
+    // If you need to load preferences when the screen loads, call here
+    // const preferences = prefPresenter.loadPreferences();
+    // ...then set them in state variables if needed
+  }, [navigation]);
+
+  // State variables and their setters
+  // If you load preferences in useEffect, you would set these with the loaded data
   const [location, setLocation] = useState("remote");
   const [grade, setGrade] = useState("flexible");
   const [specificPreference, setSpecificPreference] = useState("");
   const [minSize, setMinSize] = useState("");
   const [maxSize, setMaxSize] = useState("");
 
+  if (!presenter) {
+    return null; // or loading indicator
+  }
+
   const handleFindMatch = () => {
-    navigation.navigate('MatchResults'); 
+    presenter.savePreferences(location, grade, specificPreference, minSize, maxSize);
+    presenter.handleFindMatch();
   };
 
   return (

@@ -1,12 +1,10 @@
-// // WelcomeScreen.js
 // import React, { useState } from 'react';
 // import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-// const WelcomeScreen = ({ navigation, presenter }) => {
+// const WelcomeScreen = ({ navigation }) => {
 //   const [name, setName] = useState('');
 
 //   const handleNameSubmit = () => {
-//    // presenter.saveUserName(name);
 //     navigation.navigate('Email');
 //   };
 
@@ -17,6 +15,7 @@
 //       <TextInput
 //         style={styles.input}
 //         placeholder="Full Name"
+//         placeholderTextColor="#A9A9A9" 
 //         value={name}
 //         onChangeText={setName}
 //       />
@@ -55,7 +54,7 @@
 //     marginBottom: 20,
 //     alignSelf: 'center',
 //     color: 'white', // Change text color
-//     placeholderTextColor: '#A9A9A9', // Light grey color for placeholder text
+//     // Removed placeholderTextColor from here
 //   },
   
 // });
@@ -64,32 +63,40 @@
 
 
 
-// WelcomeScreen.js
-import React, { useState } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import WelcomePresenter from '../presenter/WelcomePresenter';
 
 const WelcomeScreen = ({ navigation }) => {
   const [name, setName] = useState('');
+  const [presenter, setPresenter] = useState(null);
 
-  const handleNameSubmit = () => {
-    // Assuming you have some logic to save the user name or navigate
-    navigation.navigate('Email');
-  };
+  useEffect(() => {
+    // Initialize the presenter and pass the navigation to it
+    const welcomePresenter = new WelcomePresenter(navigation);
+    setPresenter(welcomePresenter);
+  }, [navigation]);
+
+  if (!presenter) {
+    // Return loading state or null if the presenter is not initialized
+    return null;
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>WELCOME TO GROUP FINDER</Text>
-      <Text style={styles.promptText}>What is your name?</Text>
+       <Text style={styles.title}>WELCOME TO GROUP FINDER</Text>
+       <Text style={styles.promptText}>What is your name?</Text>
       <TextInput
         style={styles.input}
         placeholder="Full Name"
-        placeholderTextColor="#A9A9A9" // Correctly moved out of the style prop
         value={name}
         onChangeText={setName}
       />
       <Button
         title="→"
-        onPress={handleNameSubmit}
+        onPress={() => presenter.handleNameSubmit(name)}
       />
     </View>
   );

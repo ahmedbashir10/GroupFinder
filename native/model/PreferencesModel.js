@@ -8,7 +8,7 @@ export default class PreferencesModel {
       };
     }
   
-    savePreferences(preferences) {
+    setPreferences(preferences) {
       this.preferences = preferences;
     }
   
@@ -16,4 +16,5 @@ export default class PreferencesModel {
       return this.preferences;
     }
   }
+  
   
