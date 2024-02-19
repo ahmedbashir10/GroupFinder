@@ -8,6 +8,7 @@ import PreferencesScreen from "./view/PreferencesScreen";
 import MatchResultsScreen from "./view/MatchResultsScreen";
 import GroupDetailsScreen from "./view/GroupDetailsScreen";
 import MyGroupsScreen from "./view/MyGroupsScreen";
+import MyGroupsDetailsScreen from "./view/MyGroupDetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -31,7 +32,7 @@ const App = () => {
           component={PreferencesScreen}
           // If you need to pass initial parameters or presenters use the initialParams prop
         />
-        
+
         <Stack.Screen
           name="MatchResults"
           component={MatchResultsScreen}
@@ -44,7 +45,13 @@ const App = () => {
           // You can pass initial parameters if needed
         />
 
-<Stack.Screen
+        <Stack.Screen
+          name="MyGroupDetails"
+          component={MyGroupsDetailsScreen}
+          // You can pass initial parameters if needed
+        />
+
+        <Stack.Screen
           name="MyGroup"
           component={MyGroupsScreen}
           // You can pass initial parameters if needed

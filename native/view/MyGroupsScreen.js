@@ -6,7 +6,7 @@ const MyGroupsScreen = ({ navigation }) => {
   // Hardcoded data for group list
 
   const handleNavigateToGroupDetails = () => {
-    navigation.navigate('GroupDetails');
+    navigation.navigate('MyGroupDetails');
   };
   
   const myGroups = [
