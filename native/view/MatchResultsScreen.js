@@ -26,6 +26,10 @@ const MatchResultsScreen = ({ navigation }) => {
     navigation.navigate("GroupDetails");
   };
 
+  const handleJoinGroup = () => {
+    navigation.navigate("CourseID");
+  };
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>YOU GOT {loadedMatches.length} MATCHES!</Text>
@@ -61,6 +65,10 @@ const MatchResultsScreen = ({ navigation }) => {
           <Text>{group.placesLeft} places left</Text>
         </TouchableOpacity>
       ))}
+
+      <TouchableOpacity style={styles.joinButton} onPress={handleJoinGroup}>
+        <Text style={styles.joinButtonText}>Create Group</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.backButton}
@@ -129,6 +137,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   backButtonText: {
+    fontSize: 20, // Larger font size for button text
+    color: "white",
+    fontWeight: "bold",
+  },
+
+  joinButton: {
+    backgroundColor: "#4caf50", // Green background for the join button
+    padding: 15,
+    borderRadius: 5,
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  joinButtonText: {
     fontSize: 20, // Larger font size for button text
     color: "white",
     fontWeight: "bold",
