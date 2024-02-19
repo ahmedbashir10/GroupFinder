@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-const CourseIDScreen = ({ navigation, presenter }) => {
-  const [selectedCourseID, setSelectedCourseID] = useState();
 
-  const handleCourseIDSelect = (itemValue) => {
-   // setSelectedCourseID(itemValue);
-    // Optionally save the selected course ID using the presenter
-   // presenter.saveCourseID(itemValue);
+
+
+const CourseIDScreen = ({ navigation, presenter }) => {
+  const [selectedCourseID, setSelectedCourseID] = useState('CourseID');
+  const [inputValue, setInputValue] = useState('');
+  const [courseIDs, setCourseIDs] = useState(['DT6299', 'ZF8130', 'QS4735', 'UW4529', 'YF6089', 'IV3280', 'ZB2352', 'JL7763', 'XO3659', 'ZY9412',
+  'BR4626', 'SR6376', 'GG9175', 'CB8623', 'YR6492', 'NL4550', 'VI5670', 'CV8377', 'MM6536', 'FR6213',
+  'RV5551', 'UC4277', 'YW5851', 'EJ2891', 'YR7676', 'OT2318', 'FS3152', 'VZ3545', 'RR3978', 'QN8994',
+  'HN1065', 'EE8804', 'BH9830', 'TP9646', 'VV2111', 'TH5161', 'LK4505', 'ZP7649', 'ZQ6114', 'BG2744',
+  'TE5004', 'CT6418', 'JR9160', 'LE8657', 'DL9915', 'PP1894', 'FS4028', 'YF6695', 'NS9373', 'VS7497','ID2214', 'ID2216', 'ID2218', 'ID2219']);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+
+
+  const handleInputChange = (text) => {
+    setInputValue(text);
+    const filtered = courseIDs.filter(courseID => courseID.toLowerCase().includes(text.toLowerCase()));
+    setFilteredCourses(filtered);
+  };
+
+  const handleCourseSelect = (courseID) => {
+    setInputValue(courseID);
+    setFilteredCourses([]);
   };
 
   const handleNext = () => {
@@ -17,46 +33,54 @@ const CourseIDScreen = ({ navigation, presenter }) => {
       navigation.navigate('Preferences'); // Replace 'NextScreen' with your actual next screen's name
     //}
   };
-
+  const suggestionContainerHeight = filteredCourses.length * 40; // Assuming each item is 40px high
+  const maxContainerHeight = 200; 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>GROUP FINDER</Text>
       <Text style={styles.subHeader}>What is your course ID?</Text>
-      <Picker
-        selectedValue={selectedCourseID}
-        style={styles.picker}
-        onValueChange={(itemValue, itemIndex) => handleCourseIDSelect(itemValue)}
-        mode="dropdown" // Android only
-      >
-        <Picker.Item label="Select a course ID" value={null} />
-        <Picker.Item label="ID221" value="ID221" />
-        <Picker.Item label="ID2214" value="ID2214" />
-        <Picker.Item label="ID2216" value="ID2216" />
-        <Picker.Item label="ID2218" value="ID2218" />
-        <Picker.Item label="ID2219" value="ID2219" />
-      </Picker>
+      
+      <TextInput
+        style={styles.input}
+        value={inputValue}
+        onChangeText={handleInputChange}
+        placeholder="Type course ID"
+      />
+      {filteredCourses.length > 0 && (
+  <View style={[styles.suggestionsContainer, {height: Math.min(suggestionContainerHeight, maxContainerHeight)}]}>
+    {filteredCourses.slice(0, 5).map((courseID, index) => ( // Limit to first 5 suggestions
+      <TouchableOpacity key={index} style={styles.suggestionItem} onPress={() => handleCourseSelect(courseID)}>
+        <Text>{courseID}</Text>
+      </TouchableOpacity>
+    ))}
+  </View>
+)}
+
       <TouchableOpacity
         style={styles.button}
         onPress={handleNext}
       >
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
-      
-      {/* Footer with 'Find group' and 'My Groups' buttons */}
       <View style={styles.footer}>
         <TouchableOpacity
-          style={styles.footerButton}
-          onPress={() => navigation.navigate('CourseID')} // Replace with your actual navigation call
+          style={[styles.footerButton, styles.activeTab]}
+          onPress={() => navigation.navigate('CourseID')} 
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.footerButton}
-          onPress={() => navigation.navigate('MyGroup')} // Replace with your actual navigation call
+          style={[styles.footerButton]}
+          onPress={() => navigation.navigate('MyGroup')}
+
         >
           <Text style={styles.footerButtonText}>My Groups</Text>
         </TouchableOpacity>
       </View>
+      {/* Footer with 'Find group' and 'My Groups' buttons */}
+      
+      
+    
     </View>
   );
 };
@@ -80,11 +104,29 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     marginBottom: 20,
   },
-  picker: {
-    width: 300,
-    height: 44,
+  input: {
+    height: 50,
+    color: "#ffffff",
+    width: "50%",
+    margin: 12,
+    marginBottom: 80,
+    borderWidth: 1,
+    borderColor: "#ffffff",
+    padding: 10,
+  },
+  suggestionsContainer: {
+    position: 'absolute',
+    top: 295, // Adjust this value based on your layout and the visual position of the TextInput
+    maxHeight: 200,
     backgroundColor: '#fff',
-    marginBottom: 20,
+    width: "50%",
+    zIndex: 1, // Adjust based on your needs
+  },
+  suggestionItem: {
+    height: 40,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
   button: {
     backgroundColor: "#4caf50",
@@ -93,30 +135,38 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "20%",
     borderRadius: 20,
-    marginBottom: 20, // Add space between button and footer
+    marginBottom: 150, // Add space between button and footer
   },
   buttonText: {
     color: "#ffffff",
     fontSize: 18,
   },
   footer: {
-    position: 'absolute',
-    bottom: 0,
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-around',
-    backgroundColor: '#333', // Match this with your app's footer background color
-    padding: 10,
+    height:100,
+    borderTopColor: 'gray',
+    //borderTopWidth: 1,
+    position: 'absolute', // Change to 'relative' if you don't want it stuck to the bottom
+    bottom: 0, // Raise the footer up from the bottom
   },
   footerButton: {
-    backgroundColor: '#4caf50', // Match this with your app's footer button color
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 20,
+    flex: 1,
+    paddingVertical: 10, // Reduced padding for smaller buttons
+    paddingHorizontal: 20, // Adjust horizontal padding if needed
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#6a7ba2', // Inactive tab color
+  },
+  activeTab: {
+    backgroundColor: '#8a9bb2', // Active tab color
   },
   footerButtonText: {
-    color: '#ffffff', // Match this with your app's footer button text color
+    color: 'white',
+    fontSize: 14, // Reduced font size for footer text
   },
 });
 
 export default CourseIDScreen;
+
+
