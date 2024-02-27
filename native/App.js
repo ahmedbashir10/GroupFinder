@@ -1,16 +1,20 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import WelcomeScreen from "./view/WelcomeScreen";
-import EmailScreen from "./view/EmailScreen"; // Make sure to import EmailScreen
-import CourseIDScreen from "./view/CourseIDScreen";
-import PreferencesScreen from "./view/PreferencesScreen";
-import MatchResultsScreen from "./view/MatchResultsScreen";
-import GroupDetailsScreen from "./view/GroupDetailsScreen";
-import MyGroupsScreen from "./view/MyGroupsScreen";
-import MyGroupsDetailsScreen from "./view/MyGroupDetailsScreen";
+import * as React from "react"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import WelcomeScreen from "./view/WelcomeScreen"
+import EmailScreen from "./view/EmailScreen" // Make sure to import EmailScreen
+import CourseIDScreen from "./view/CourseIDScreen"
+import PreferencesScreen from "./view/PreferencesScreen"
+import MatchResultsScreen from "./view/MatchResultsScreen"
+import GroupDetailsScreen from "./view/GroupDetailsScreen"
+import MyGroupsScreen from "./view/MyGroupsScreen"
+import MyGroupsDetailsScreen from "./view/MyGroupDetailsScreen"
 
-const Stack = createStackNavigator();
+// import { firebaseConfig } from "./dbConfig";
+// import { View } from "react-native"
+// import Fetch from "./fetch"
+
+const Stack = createStackNavigator()
 
 const App = () => {
   return (
@@ -58,7 +62,7 @@ const App = () => {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-};
+  )
+}
 
-export default App;
+export default App

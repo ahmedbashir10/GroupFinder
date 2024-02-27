@@ -1,34 +1,38 @@
-import React from "react";
+import React from "react"
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-} from "react-native";
+} from "react-native"
+
+import creategroup from "../createGroup"
+import UserModel from "../model/UserModel"
 
 const MatchResultsScreen = ({ navigation }) => {
   // Hardcoded data for matches and other groups
   const loadedMatches = [
     { name: "Group 2", placesLeft: "2/4" },
     { name: "Group 4", placesLeft: "1/4" },
-  ];
+  ]
 
   const otherGroupsData = [
     { name: "Group 3", placesLeft: "2/4" },
     { name: "Group 5", placesLeft: "1/4" },
-  ];
+  ]
 
-  const noPlaceLeftGroup = [{ name: "Group 1", placesLeft: "0/4" }];
+  const noPlaceLeftGroup = [{ name: "Group 1", placesLeft: "0/4" }]
 
   // Function to handle navigation to GroupDetailsScreen with group details
   const handleNavigateToGroupDetails = () => {
-    navigation.navigate("GroupDetails");
-  };
+    navigation.navigate("GroupDetails")
+  }
 
-  const handleJoinGroup = () => {
-    navigation.navigate("CourseID");
-  };
+  const handleCreateGroup = () => {
+    creategroup("ID1212", "Zoom", "pass", 1, 2, "test", "demo", "english")
+    navigation.navigate("CourseID")
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -66,7 +70,7 @@ const MatchResultsScreen = ({ navigation }) => {
         </TouchableOpacity>
       ))}
 
-      <TouchableOpacity style={styles.joinButton} onPress={handleJoinGroup}>
+      <TouchableOpacity style={styles.joinButton} onPress={handleCreateGroup}>
         <Text style={styles.joinButtonText}>Create Group</Text>
       </TouchableOpacity>
 
@@ -77,8 +81,8 @@ const MatchResultsScreen = ({ navigation }) => {
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -154,6 +158,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
-});
+})
 
-export default MatchResultsScreen;
+export default MatchResultsScreen
