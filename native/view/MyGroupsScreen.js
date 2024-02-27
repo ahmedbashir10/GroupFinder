@@ -15,6 +15,7 @@ const MyGroupsScreen = ({ navigation }) => {
   ];
 
   return (
+    <View style={styles.screen}>
     <View style={styles.container}>
       
       <Text style={styles.header}>My Groups:</Text>
@@ -27,7 +28,9 @@ const MyGroupsScreen = ({ navigation }) => {
         </TouchableOpacity>
       ))}
       </ScrollView>
-      <View style={styles.footer}>
+      
+    </View>
+    <View style={styles.footer}>
         <TouchableOpacity
           style={styles.footerButton}
           onPress={() => navigation.navigate('CourseID')} 
@@ -42,15 +45,20 @@ const MyGroupsScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </View>
+    
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     backgroundColor: '#84b5f0',
     alignItems: 'center',
+
+  },
+  container: {
     paddingTop: 50, 
+    padding: 20,
   },
   header: {
     fontSize: 24,
@@ -63,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     alignSelf: 'center', // Center group item to center horizontally
-    width: '80%', // Adjust the width to match the design
+    width: '98%', // Adjust the width to match the design
     flexDirection: 'row', // Layout children in a row
     justifyContent: 'space-between', // Space out children to start and end of container
     marginBottom: 10,
@@ -88,8 +96,8 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     flex: 1,
-    paddingVertical: 10, // Reduced padding for smaller buttons
-    paddingHorizontal: 20, // Adjust horizontal padding if needed
+    //paddingVertical: 10, // Reduced padding for smaller buttons
+    //paddingHorizontal: 20, // Adjust horizontal padding if needed
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#6a7ba2', // Inactive tab color

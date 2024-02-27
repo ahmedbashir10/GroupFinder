@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { Keyboard,useState, useEffect } from "react";
+import RNPickerSelect from "react-native-picker-select";
 import {
   View,
   Text,
@@ -39,30 +40,43 @@ const PreferencesScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View  style={styles.container} >
       <Text style={styles.header}>Preferences</Text>
 
       <Text style={styles.label}>Location preferences</Text>
-      <Picker
-        selectedValue={location}
-        style={styles.picker}
-        onValueChange={(itemValue) => setLocation(itemValue)}
-      >
-        <Picker.Item label="Remote" value="remote" />
-        <Picker.Item label="Real-life" value="real-life" />
-        <Picker.Item label="Flexible" value="flexible" />
-      </Picker>
+      
+      <RNPickerSelect
+                //placeholder={{ label: "Select you favourite language", value: "Remote" }}
+                onValueChange={(itemValue) => setLocation(itemValue)}
+                items={[
+                    { label: "Remote", value: "Remote" },
+                    { label: "Real-life", value: "Real-life" },
+                    { label: "Flexible", value: "Flexible" },
+                ]}
+                style={{
+                  inputIOS: styles.inputIOS, // styles for iOS
+                  inputAndroid: styles.inputAndroid,
+                  //placeholder: styles.placeholder // styles for Android
+                }}
+        />
+
 
       <Text style={styles.label}>Grade preference</Text>
-      <Picker
-        selectedValue={grade}
-        style={styles.picker}
-        onValueChange={(itemValue) => setGrade(itemValue)}
-      >
-        <Picker.Item label="Pass" value="pass" />
-        <Picker.Item label="Higher" value="higher" />
-        <Picker.Item label="Flexible" value="flexible" />
-      </Picker>
+      <RNPickerSelect
+          //placeholder={{ label: "Select you favourite language", value: "Remote" }}
+          onValueChange={(itemValue) => setGrade(itemValue)}
+          items={[
+              { label: "Pass", value: "Pass" },
+              { label: "Higher", value: "Higher" },
+              { label: "Flexible", value: "Flexible" },
+          ]}
+          style={{
+            inputIOS: styles.inputIOS, // styles for iOS
+            inputAndroid: styles.inputAndroid,
+            //placeholder: styles.placeholder // styles for Android
+          }}
+        />
+      
 
       <Text style={styles.label}>Specific preferences</Text>
       <TextInput
@@ -115,6 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#84b5f0",
     alignItems: "center",
     justifyContent: "center",
+    
     padding: 20,
   },
   header: {
@@ -128,9 +143,47 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   picker: {
+    flex: 1,
     width: "80%", // Increase width to match other inputs
     backgroundColor: "#ffffff",
     marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputIOS: {
+    fontSize: 14,
+    backgroundColor: "#ffffff",
+    width: "80%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: "row",
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+
+    color: 'black',
+    paddingRight: 30,
+    marginLeft: "10%",
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 14,
+    backgroundColor: "#ffffff",
+    width: "80%",
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    color: 'black',
+    paddingRight: 30,
+    marginLeft: "10%",
+    textAlign: 'center', // to ensure the text is never behind the icon
+  },
+  placeholder: {
+    color: 'grey', // Color for placeholder text
+    fontSize: 16,
+    width: "80%",
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: "row",
   },
   input: {
     width: "80%", // Increase width to allow for longer inputs

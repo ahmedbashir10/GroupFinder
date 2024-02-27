@@ -92,32 +92,41 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 20,
-    paddingBottom: 50, // Adjust this value to raise the picker and buttons up from the bottom
+    paddingBottom: 50,
+    position: "relative", // Adjust this value to raise the picker and buttons up from the bottom
   },
   header: {
+    top: "15%",
+    position: "absolute",
     fontSize: 24,
     color: "#ffffff",
     marginBottom: 20,
   },
   subHeader: {
+    position: "absolute",
+    top: "15%",
+    marginTop: 40,
     fontSize: 18,
     color: "#ffffff",
     marginBottom: 20,
   },
   input: {
+    position: "absolute",
     height: 50,
     color: "#ffffff",
+    top: "15%",
     width: "50%",
-    margin: 12,
-    marginBottom: 80,
+    //margin: 12,
+    marginTop: 80,
     borderWidth: 1,
     borderColor: "#ffffff",
-    padding: 10,
+    //padding: 10,
   },
   suggestionsContainer: {
     position: 'absolute',
-    top: 295, // Adjust this value based on your layout and the visual position of the TextInput
-    maxHeight: 200,
+    top: "15%",
+    marginTop: 130, // Adjust this value based on your layout and the visual position of the TextInput
+    //maxHeight: 200,
     backgroundColor: '#fff',
     width: "50%",
     zIndex: 1, // Adjust based on your needs
@@ -129,13 +138,18 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
   },
   button: {
+    position: 'absolute',
+    top: "15%",
     backgroundColor: "#4caf50",
-    padding: 15,
+    marginTop: 200,
+    //padding: 15,
     alignItems: "center",
     justifyContent: "center",
-    width: "20%",
+    height: 40,
+    width: "30%",
     borderRadius: 20,
-    marginBottom: 150, // Add space between button and footer
+    //marginTop: 50,
+    //marginBottom: "50%", // Add space between button and footer
   },
   buttonText: {
     color: "#ffffff",
