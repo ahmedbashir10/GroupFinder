@@ -1,6 +1,6 @@
-import db from "./dbConfig"
+import { db, auth } from "./dbConfig"
 
-export default function creategroup(
+export default function createGroup(
   course,
   location,
   grade,
@@ -23,18 +23,33 @@ export default function creategroup(
       userinfos: [userinfo],
     })
     .then(() => {
-      //console.log("Group created with ID:", groupRef.id)
-      // updateCourses()
-      db.collection("courses").doc(course).set(
-        {
-          groups: groupRef.id,
-        },
-        { merge: true }
-      )
-    }) // Use merge: true to not overwrite existing fields
-    .then(() =>
-      console.log(`Course ${course} updated with group ID ${groupRef.id}.`)
-    )
-  // updateCourses(course, groupRef, db)
-}
+      const courseRef = db.collection("courses").doc(course)
 
+      courseRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            // If it exists, update the document
+            courseRef.update({
+              groups: auth.FieldValue.arrayUnion(groupRef.id),
+            })
+          } else {
+            // If it doesn't exist, set the document
+            courseRef.set({
+              groups: [groupRef.id],
+            })
+          }
+        })
+        .then(() => {
+          console.log(
+            `Course ${course} updated with new group ID ${groupRef.id}.`
+          )
+        })
+        .catch((error) => {
+          console.error("Error updating course with new group ID:", error)
+        })
+    })
+    .catch((error) => {
+      console.error("Error creating new group:", error)
+    })
+}
