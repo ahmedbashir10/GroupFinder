@@ -1,4 +1,4 @@
-export default class PreferencesModel {
+ class PreferencesModel {
     constructor() {
       this.preferences = {
         location: 'Remote', // Default value
@@ -17,4 +17,4 @@ export default class PreferencesModel {
     }
   }
   
-  
+  export default new PreferencesModel();

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import CourseIDPresenter from '../presenter/CourseIDPresenter';
 
 
 
 
-const CourseIDScreen = ({ navigation, presenter }) => {
+
+const CourseIDScreen = ({ navigation }) => {
+  const [presenter, setPresenter] = useState(null);
   const [selectedCourseID, setSelectedCourseID] = useState('CourseID');
   const [inputValue, setInputValue] = useState('');
   const [courseIDs, setCourseIDs] = useState(['DT6299', 'ZF8130', 'QS4735', 'UW4529', 'YF6089', 'IV3280', 'ZB2352', 'JL7763', 'XO3659', 'ZY9412',
@@ -15,6 +17,11 @@ const CourseIDScreen = ({ navigation, presenter }) => {
   'TE5004', 'CT6418', 'JR9160', 'LE8657', 'DL9915', 'PP1894', 'FS4028', 'YF6695', 'NS9373', 'VS7497','ID2214', 'ID2216', 'ID2218', 'ID2219']);
   const [filteredCourses, setFilteredCourses] = useState([]);
 
+
+  useEffect(() => {
+    const courseIDPresenter = new CourseIDPresenter(navigation);
+    setPresenter(courseIDPresenter);
+  }, [navigation]);
 
   const handleInputChange = (text) => {
     setInputValue(text);
@@ -27,12 +34,6 @@ const CourseIDScreen = ({ navigation, presenter }) => {
     setFilteredCourses([]);
   };
 
-  const handleNext = () => {
-   // if (selectedCourseID) {
-      // Navigate to the next screen if course ID is selected
-      navigation.navigate('Preferences'); // Replace 'NextScreen' with your actual next screen's name
-    //}
-  };
   const suggestionContainerHeight = filteredCourses.length * 40; // Assuming each item is 40px high
   const maxContainerHeight = 200; 
   return (
@@ -58,7 +59,17 @@ const CourseIDScreen = ({ navigation, presenter }) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={handleNext}
+       // onPress={handleNext}
+      // onPress={() => presenter.saveCourseID("DT6299")}
+
+      onPress={() => {
+        if (inputValue) {
+          presenter.saveCourseID(inputValue); // Use the inputValue instead of the hardcoded value
+        } else {
+          // Optionally handle the case where the input value is empty
+          console.log('Please enter or select a course ID');
+        }
+      }}
       >
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>

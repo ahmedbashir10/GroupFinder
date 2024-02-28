@@ -1,24 +1,26 @@
-import PreferencesModel from "../model/PreferencesModel";
+// import PreferencesModel from "../model/PreferencesModel";
+import preferencesModel from "../model/PreferencesModel";
+
 
 class PreferencesPresenter {
   constructor(navigation) {
     this.navigation = navigation;
-    this.model = new PreferencesModel;
+    // this.model = new PreferencesModel;
   }
 
   loadPreferences() {
     // Load preferences and handle them if necessary
-    return this.model.getPreferences();
+    return preferencesModel.getPreferences();
   }
 
   savePreferences(location, grade, specific, minSize, maxSize) {
     
-    this.model.setPreferences({ location, grade, specific, groupSize: { min: minSize, max: maxSize } });
+    preferencesModel.setPreferences({ location, grade, specific, groupSize: { min: minSize, max: maxSize } });
   }
 
    
   handleFindMatch() {
-    console.log(this.model.getPreferences())
+    console.log(preferencesModel.getPreferences())
     this.navigation.navigate('MatchResults');
   }
 

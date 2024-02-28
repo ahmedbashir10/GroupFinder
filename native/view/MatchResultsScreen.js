@@ -7,10 +7,12 @@ import {
   ScrollView,
 } from "react-native"
 
-import creategroup from "../createGroup"
-import UserModel from "../model/UserModel"
+import MatchResultsPresenter from "../presenter/MatchResultsPresenter"
 
 const MatchResultsScreen = ({ navigation }) => {
+  
+  const presenter = new MatchResultsPresenter(navigation);
+
   // Hardcoded data for matches and other groups
   const loadedMatches = [
     { name: "Group 2", placesLeft: "2/4" },
@@ -30,8 +32,9 @@ const MatchResultsScreen = ({ navigation }) => {
   }
 
   const handleCreateGroup = () => {
-    creategroup("ID1212", "Zoom", "pass", 1, 2, "test", "demo", "english")
-    navigation.navigate("CourseID")
+   // creategroup("IV3280", "Zoom", "pass", 1, 2, "test", "demo", "english")
+   presenter.handleCreateGroup();
+   //navigation.navigate("CourseID")
   }
 
   return (

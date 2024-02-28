@@ -1,13 +1,16 @@
-import UserModel from './UserModel'; 
+import userModel from "../model/UserModel";
 
 class CourseIDPresenter {
-  constructor(model) {
-    this.model = model;
+  constructor(navigation) {
+    this.navigation = navigation;
   }
 
   saveCourseID(courseID) {
-    this.model.saveCourseID(courseID);
-    // Additional logic for after saving the course ID can be added here
+    userModel.setCourseID(courseID);
+   
+    console.log("the person with name: " + userModel.getName() + ", Email: " + userModel.getUserEmail() + " and course_id: " + userModel.getCourseID() + " is saved");
+    
+    this.navigation.navigate('Preferences'); 
   }
 }
 
