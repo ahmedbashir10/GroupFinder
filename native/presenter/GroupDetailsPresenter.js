@@ -1,16 +1,20 @@
-import GroupDetailsModel from '../model/GroupDetailsModel';
+import fetchGroupDetailsDAO from '../integration/fetchGroupDetailsDAO';
 
 class GroupDetailsPresenter {
-  constructor(view) {
+  constructor(view, navigation) {
     this.view = view;
-    this.model = new GroupDetailsModel();
+    this.navigation = navigation;
   }
 
-  loadGroupDetails() {
-    const groupDetails = this.model.getGroupDetails();
+  async loadGroupDetails(groupId) {
+    const groupDetails = await fetchGroupDetailsDAO(groupId);
     this.view.updateGroupDetails(groupDetails);
   }
 
+  leaveGroup() {
+    this.navigation.navigate('MyGroup');
+  }
 }
 
 export default GroupDetailsPresenter;
+
