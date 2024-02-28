@@ -1,39 +1,87 @@
+// import React from 'react';
+// import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+
+
+// const MyGroupsScreen = ({ navigation }) => {
+//   // Hardcoded data for group list
+
+//   const handleNavigateToGroupDetails = () => {
+//     navigation.navigate('MyGroupDetails');
+//   };
+  
+//   const myGroups = [
+//     { key: '1', name: 'ID2216 Group', members: '3/4' },
+//     { key: '2', name: 'ME2064 Group', members: '4/4' }
+//   ];
+
+//   return (
+//     <View style={styles.screen}>
+//     <View style={styles.container}>
+      
+//       <Text style={styles.header}>My Groups:</Text>
+//       <ScrollView >
+//       {myGroups.map((group, index) => (
+//         <TouchableOpacity key={index} style={styles.groupItem} onPress={handleNavigateToGroupDetails}>
+//           <Text style={styles.groupName}>{group.name}</Text>
+//           <Text>{group.members} </Text>
+//           {/* Added TouchableOpacity for navigation */}
+//         </TouchableOpacity>
+//       ))}
+//       </ScrollView>
+      
+//     </View>
+//     <View style={styles.footer}>
+//         <TouchableOpacity
+//           style={styles.footerButton}
+//           onPress={() => navigation.navigate('CourseID')} 
+//         >
+//           <Text style={styles.footerButtonText}>Find group</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity
+//           style={[styles.footerButton, styles.activeTab]}
+//           onPress={() => {navigation.navigate('MyGroup')}}
+//         >
+//           <Text style={styles.footerButtonText}>My Groups</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+    
+//   );
+// };
+
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import GroupsPresenter from '../presenter/GroupsPresenter';
 
-
-const MyGroupsScreen = ({ navigation }) => {
-  // Hardcoded data for group list
-
-  const handleNavigateToGroupDetails = () => {
-    navigation.navigate('MyGroupDetails');
+const MyGroupsScreenComponent = ({ navigation, groups }) => {
+  const handleNavigateToGroupDetails = (groupId) => {
+    navigation.navigate('MyGroupDetails', { groupId });
   };
-  
-  const myGroups = [
-    { key: '1', name: 'ID2216 Group', members: '3/4' },
-    { key: '2', name: 'ME2064 Group', members: '4/4' }
-  ];
 
   return (
     <View style={styles.screen}>
-    <View style={styles.container}>
-      
-      <Text style={styles.header}>My Groups:</Text>
-      <ScrollView >
-      {myGroups.map((group, index) => (
-        <TouchableOpacity key={index} style={styles.groupItem} onPress={handleNavigateToGroupDetails}>
-          <Text style={styles.groupName}>{group.name}</Text>
-          <Text>{group.members} </Text>
-          {/* Added TouchableOpacity for navigation */}
-        </TouchableOpacity>
-      ))}
-      </ScrollView>
-      
-    </View>
-    <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.footerButton}
-          onPress={() => navigation.navigate('CourseID')} 
+      <View style={styles.container}>
+        <Text style={styles.header}>My Groups:</Text>
+        <ScrollView>
+          {groups.map((group, index) => {
+            // Assuming group.members is an array of member IDs
+            const memberCount = group.members ? group.members.length : 1; // Update this based on your actual data structure
+            const maxMembers = group.preferences.groupSize.max;
+            const courseID = group.courseID; // Accessing courseID directly from the group object
+
+            return (
+              <TouchableOpacity key={index} style={styles.groupItem} onPress={() => handleNavigateToGroupDetails(group.id)}>
+                <Text style={styles.groupName}>{group.name || "Group Name"}</Text>
+                <Text style={styles.groupMembers}>{` ${courseID} - ${memberCount}/${maxMembers}`}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
+      </View>
+      <View style={styles.footer}>
+         <TouchableOpacity
+           style={styles.footerButton}
+           onPress={() => navigation.navigate('CourseID')} 
         >
           <Text style={styles.footerButtonText}>Find group</Text>
         </TouchableOpacity>
@@ -45,9 +93,10 @@ const MyGroupsScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </View>
-    
   );
 };
+
+const MyGroupsScreen = GroupsPresenter(MyGroupsScreenComponent);
 
 const styles = StyleSheet.create({
   screen: {
