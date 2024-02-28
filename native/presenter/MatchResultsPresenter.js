@@ -1,6 +1,6 @@
 
 import userModel from "../model/UserModel";
-import createGroup from "../createGroup";
+import createGroupDAO from "../integration/createGroupDAO";
 import preferencesModel from "../model/PreferencesModel"; // This should be the instance
 
 export default class MatchResultsPresenter {
@@ -10,7 +10,7 @@ export default class MatchResultsPresenter {
   
   async handleCreateGroup() {
     
-      const groupId = await createGroup(userModel, preferencesModel);
+      const groupId = await createGroupDAO(userModel, preferencesModel);
       
       this.navigation.navigate("MyGroup");
   }

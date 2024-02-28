@@ -1,6 +1,6 @@
 // import { db, auth } from "./dbConfig"
 
-// export default function createGroup(
+// export default function createGroupDAO(
 //   course,
 //   location,
 //   grade,
@@ -57,11 +57,11 @@
 
 
 
-import { db } from "./dbConfig";
+import { db } from "../dbConfig";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
-const createGroup = async (userModel, preferencesModel) => {
+const createGroupDAO = async (userModel, preferencesModel) => {
   try {
     const name = userModel.getName();
     const email = userModel.getUserEmail();
@@ -115,4 +115,4 @@ const createGroup = async (userModel, preferencesModel) => {
   }
 };
 
-export default createGroup;
+export default createGroupDAO;
