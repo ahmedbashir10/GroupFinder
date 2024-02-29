@@ -1,9 +1,15 @@
 import userModel from "../model/UserModel";
+import fetchcourses from "../integration/fetchcourses";
 
 class CourseIDPresenter {
   constructor(navigation) {
     this.navigation = navigation;
   }
+
+  async fetchcourseIDs() {
+    
+    
+}
 
   saveCourseID(courseID) {
     userModel.setCourseID(courseID);
