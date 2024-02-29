@@ -187,10 +187,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20, // Adjust horizontal padding if needed
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#6a7ba2', // Inactive tab color
+    backgroundColor: '#8a9bb2'
+    , // Inactive tab color
   },
   activeTab: {
-    backgroundColor: '#8a9bb2', // Active tab color
+    backgroundColor: '#6a7ba2', // Active tab color
   },
   footerButtonText: {
     color: 'white',

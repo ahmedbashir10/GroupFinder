@@ -112,15 +112,13 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
   },
   groupItemNoPlace: {
-    backgroundColor: "grey",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
     padding: 20,
     alignSelf: "center", // Center group item to center horizontally
     width: "98%", // Adjust the width to match the design
     flexDirection: "row", // Layout children in a row
     justifyContent: "space-between", // Space out children to start and end of container
     marginBottom: 10,
-    borderWidth: 1,
-    borderColor: "#ccc",
   },
   groupName: {
     fontWeight: "bold",

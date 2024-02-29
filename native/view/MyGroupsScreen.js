@@ -214,14 +214,15 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     flex: 1,
-    //paddingVertical: 10, // Reduced padding for smaller buttons
-    //paddingHorizontal: 20, // Adjust horizontal padding if needed
+    paddingVertical: 10, // Reduced padding for smaller buttons
+    paddingHorizontal: 20, // Adjust horizontal padding if needed
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#6a7ba2', // Inactive tab color
+    backgroundColor: '#8a9bb2'
+    , // Inactive tab color
   },
   activeTab: {
-    backgroundColor: '#8a9bb2', // Active tab color
+    backgroundColor: '#6a7ba2', // Active tab color
   },
   footerButtonText: {
     color: 'white',
