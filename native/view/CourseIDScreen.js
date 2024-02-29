@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import CourseIDPresenter from '../presenter/CourseIDPresenter';
+import fetchcourses from '../integration/fetchcoursesDAO';
 
 
 
@@ -20,6 +21,11 @@ const CourseIDScreen = ({ navigation }) => {
 
   useEffect(() => {
     const courseIDPresenter = new CourseIDPresenter(navigation);
+    async function loadCourses() {
+      const fetchedCourses = await fetchcourses();  // No argument is passed
+      setCourseIDs(fetchedCourses);
+    }
+    loadCourses();
     setPresenter(courseIDPresenter);
   }, [navigation]);
 
