@@ -136,12 +136,12 @@ const MyGroupsScreenComponent = ({ navigation, groups }) => {
           {groups.map((group, index) => {
             const memberCount = group.members ? group.members.length : 1; 
             const maxMembers = group.preferences.groupSize.max;
-            const courseID = group.courseID; // Accessing courseID directly from the group object
+            const courseID = group.courseID; 
 
             return (
               <TouchableOpacity key={index} style={styles.groupItem} onPress={() => handleNavigateToGroupDetails(group.id)}>
-                <Text style={styles.groupName}>{group.name || "Group Name"}</Text>
-                <Text style={styles.groupMembers}>{` ${courseID} - ${memberCount}/${maxMembers}`}</Text>
+                <Text style={styles.groupName}>{group.courseID || "Group Name"} Group</Text>
+                <Text style={styles.groupMembers}>{`${memberCount}/${maxMembers}`}</Text>
               </TouchableOpacity>
             );
           })}
