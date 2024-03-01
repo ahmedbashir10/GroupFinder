@@ -19,7 +19,7 @@ export default class MatchResultsPresenter {
     try {
       const allGroups = await FindGroupsDAO.fetchGroupsByCourseID(courseID);
       const preferences = preferencesModel.getPreferences();
-
+      // console.log("the preferences: " + JSON.stringify(preferences, null, 2));
       const matchingGroups = allGroups.filter(group => {
         const groupSize = group.members.length;
         return (

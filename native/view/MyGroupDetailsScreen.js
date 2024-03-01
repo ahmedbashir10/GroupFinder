@@ -255,7 +255,7 @@ const MyGroupDetailsScreen = ({ navigation, route }) => {
   const handleLeaveGroup = () => {
     presenter.leaveGroup();
   };
-
+  console.log('Route parameters:', route.params);
   const showModal = (member) => {
     setSelectedMember({ preferences: groupDetails.preferences.specific });
     setModalVisible(true);

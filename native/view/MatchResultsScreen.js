@@ -168,6 +168,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import MatchResultsPresenter from "../presenter/MatchResultsPresenter";
+import UserModel from "../model/UserModel";
 
 const MatchResultsScreen = ({ navigation }) => {
   const [matchingGroups, setMatchingGroups] = useState([]);
@@ -175,11 +176,15 @@ const MatchResultsScreen = ({ navigation }) => {
 
   useEffect(() => {
     // Load matching groups when the component mounts
-    presenter.loadMatchingGroups("IV3280", setMatchingGroups);
+    presenter.loadMatchingGroups(UserModel.getCourseID(), setMatchingGroups);
   }, []);
 
-  const handleNavigateToGroupDetails = (groupId) => {
-    navigation.navigate("GroupDetails", { groupId });
+  const handleNavigateToGroupDetails = (group) => {
+    if (group && group.id) {
+      navigation.navigate("GroupDetails", { groupId: group.id });
+    } else {
+      console.error("Group ID is missing.");
+    }
   };
 
   return (
@@ -190,9 +195,9 @@ const MatchResultsScreen = ({ navigation }) => {
         <TouchableOpacity
           key={index}
           style={styles.groupItem}
-          onPress={() => handleNavigateToGroupDetails(group.id)}
+          onPress={() => handleNavigateToGroupDetails(group)}
         >
-          <Text style={styles.groupName}>{group.groupName}</Text>
+          <Text  style={styles.groupName}>{group.groupName}</Text>
           <Text>{group.members.length}/{group.preferences.groupSize.max} places left</Text>
         </TouchableOpacity>
       ))}
