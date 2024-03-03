@@ -257,7 +257,7 @@ const GroupDetailsScreen = ({ navigation, route }) => {
   }, [groupId]);
 
   const handleJoinGroup = () => {
-    presenter.joinGroup();
+    presenter.leaveGroup();
   };
 
   const showModal = (member) => {
