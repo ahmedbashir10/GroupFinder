@@ -256,8 +256,8 @@ const GroupDetailsScreen = ({ navigation, route }) => {
     presenter.loadGroupDetails(groupId);
   }, [groupId]);
 
-  const handleLeaveGroup = () => {
-    presenter.leaveGroup();
+  const handleJoinGroup = () => {
+    presenter.joinGroup();
   };
 
   const showModal = (member) => {
@@ -304,8 +304,8 @@ const GroupDetailsScreen = ({ navigation, route }) => {
         {`${groupDetails.members.length}/${groupDetails.preferences.groupSize.max} members joined`}
       </Text>
 
-      <TouchableOpacity style={styles.joinButton} onPress={handleLeaveGroup}>
-        <Text style={styles.joinButtonText}>Leave Group</Text>
+      <TouchableOpacity style={styles.joinButton} onPress={handleJoinGroup}>
+        <Text style={styles.joinButtonText}>Join Group</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   joinButton: {
-    backgroundColor: "#ff0000", // Green background for the join button
+    backgroundColor: "#4caf50", // Green background for the join button
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
