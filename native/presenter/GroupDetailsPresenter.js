@@ -69,6 +69,7 @@ class GroupDetailsPresenter {
       await joinGroupDAO(groupId, userModel, userPreferences);
       this.view.onJoinGroupSuccess();
       this.loadGroupDetails(groupId); // Re-fetch group details after joining
+      this.navigation.navigate('MyGroup');
     } catch (error) {
       console.error("Error joining group:", error);
       this.view.onJoinGroupError(error);
