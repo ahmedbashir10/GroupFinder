@@ -224,17 +224,136 @@
 
 // export default GroupDetailsScreen;
 
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import {
+//   View,
+//   Text,
+//   TouchableOpacity,
+//   ScrollView,
+//   Modal,
+//   Button,
+//   StyleSheet,
+// } from "react-native";
+// import GroupDetailsPresenter from "../presenter/GroupDetailsPresenter";
+
+// const MyGroupDetailsScreen = ({ navigation, route }) => {
+//   const [groupDetails, setGroupDetails] = useState(null);
+//   const [modalVisible, setModalVisible] = useState(false);
+//   const [selectedMember, setSelectedMember] = useState(null);
+//   const { groupId } = route.params;
+
+//   useEffect(() => {
+//     presenter = new GroupDetailsPresenter(
+//       {
+//         updateGroupDetails: setGroupDetails,
+//       },
+//       navigation
+//     );
+//     presenter.loadGroupDetails(groupId);
+//   }, [groupId]);
+
+//   const handleLeaveGroup = () => {
+//     presenter.leaveGroup();
+//   };
+//   console.log('Route parameters:', route.params);
+//   const showModal = (member) => {
+//     setSelectedMember({ preferences: groupDetails.preferences.specific });
+//     setModalVisible(true);
+//   };
+
+//   if (!groupDetails) {
+//     return (
+//       <View style={styles.container}>
+//         <Text>Loading...</Text>
+//       </View>
+//     );
+//   }
+
+//   return (
+//     <ScrollView style={styles.container}>
+//       <Text style={styles.title}>{groupDetails.groupName}</Text>
+
+//       <View style={styles.preferencesSection}>
+//         <Text style={styles.preferenceItem}>
+//           Location Preference: {groupDetails.preferences.location}
+//         </Text>
+//         <Text style={styles.preferenceItem}>
+//           Grade Preference: {groupDetails.preferences.grade}
+//         </Text>
+//       </View>
+
+//       <View>
+//         <Text style={styles.title}>Details Info:</Text>
+//       </View>
+//       <View style={styles.membersSection}>
+//         {/* Display the group creator's name, email, and specific info */}
+//         <View style={styles.memberItem}>
+//           <Text style={styles.memberName}>{groupDetails.name}</Text>
+//           <TouchableOpacity onPress={showModal} style={styles.infoButton}>
+//             <Text style={styles.infoButtonText}>Info</Text>
+//           </TouchableOpacity>
+//           <Text style={styles.memberEmail}>{groupDetails.email}</Text>
+//         </View>
+//       </View>
+
+//       <Text style={styles.membersCount}>
+//         {`${groupDetails.members.length}/${groupDetails.preferences.groupSize.max} members joined`}
+//       </Text>
+
+//       <TouchableOpacity style={styles.joinButton} onPress={handleLeaveGroup}>
+//         <Text style={styles.joinButtonText}>Leave Group</Text>
+//       </TouchableOpacity>
+
+//       <TouchableOpacity
+//         style={styles.backButton}
+//         onPress={() => navigation.goBack()}
+//       >
+//         <Text style={styles.backButtonText}>Back</Text>
+//       </TouchableOpacity>
+
+//       <Modal
+//         animationType="slide"
+//         transparent={true}
+//         visible={modalVisible}
+//         onRequestClose={() => setModalVisible(false)}
+//       >
+//         <View style={styles.centeredView}>
+//           <View style={styles.modalView}>
+//             <Text style={styles.modalText}>
+//               {selectedMember
+//                 ? selectedMember.preferences
+//                 : "No preferences available."}
+//             </Text>
+//             <Button title="Close" onPress={() => setModalVisible(false)} />
+//           </View>
+//         </View>
+//       </Modal>
+//     </ScrollView>
+//   );
+// };
+
+
+
+
+
+
 import React, { useState, useEffect } from "react";
 import {
+  ScrollView,
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   Modal,
   Button,
   StyleSheet,
 } from "react-native";
 import GroupDetailsPresenter from "../presenter/GroupDetailsPresenter";
+import userModel from "../model/UserModel";
 
 const MyGroupDetailsScreen = ({ navigation, route }) => {
   const [groupDetails, setGroupDetails] = useState(null);
@@ -242,95 +361,92 @@ const MyGroupDetailsScreen = ({ navigation, route }) => {
   const [selectedMember, setSelectedMember] = useState(null);
   const { groupId } = route.params;
 
+  const presenter = new GroupDetailsPresenter(
+    {
+      updateGroupDetails: setGroupDetails,
+    },
+    navigation
+  );
+
   useEffect(() => {
-    presenter = new GroupDetailsPresenter(
-      {
-        updateGroupDetails: setGroupDetails,
-      },
-      navigation
-    );
-    presenter.loadGroupDetails(groupId);
+    if (groupId) {
+      presenter.loadGroupDetails(groupId);
+    }
   }, [groupId]);
 
   const handleLeaveGroup = () => {
-    presenter.leaveGroup();
-  };
-  console.log('Route parameters:', route.params);
-  const showModal = (member) => {
-    setSelectedMember({ preferences: groupDetails.preferences.specific });
-    setModalVisible(true);
+    // Leave group logic
+    navigation.navigate("MyGroup");
   };
 
-  if (!groupDetails) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
+  const showModal = (member) => {
+    const specificPreference = member.preferences?.specific || 'No specific preference.';
+    setSelectedMember({ ...member, specificPreference });
+    setModalVisible(true);
+  };
+  
+  
+
+  
+const renderMembers = () => {
+  return groupDetails?.members.map((member, index) => (
+    <View key={index} style={styles.memberItem}>
+      <Text style={styles.memberName}>{member.name}</Text>
+      <TouchableOpacity onPress={() => showModal(member)} style={styles.infoButton}>
+        <Text style={styles.infoButton}>Info</Text>
+      </TouchableOpacity>
+      <Text style={styles.memberEmail}>{member.email}</Text>
+    </View>
+  ));
+};
+
+
+
+
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>{groupDetails.groupName}</Text>
-
-      <View style={styles.preferencesSection}>
-        <Text style={styles.preferenceItem}>
-          Location Preference: {groupDetails.preferences.location}
-        </Text>
-        <Text style={styles.preferenceItem}>
-          Grade Preference: {groupDetails.preferences.grade}
-        </Text>
-      </View>
-
-      <View>
-        <Text style={styles.title}>Details Info:</Text>
-      </View>
-      <View style={styles.membersSection}>
-        {/* Display the group creator's name, email, and specific info */}
-        <View style={styles.memberItem}>
-          <Text style={styles.memberName}>{groupDetails.name}</Text>
-          <TouchableOpacity onPress={showModal} style={styles.infoButton}>
-            <Text style={styles.infoButtonText}>Info</Text>
-          </TouchableOpacity>
-          <Text style={styles.memberEmail}>{groupDetails.email}</Text>
-        </View>
-      </View>
-
-      <Text style={styles.membersCount}>
-        {`${groupDetails.members.length}/${groupDetails.preferences.groupSize.max} members joined`}
+      <Text style={styles.title}>
+        {groupDetails?.groupName || "Group Details"}
       </Text>
-
+      <View style={styles.preferencesSection}>
+        <Text>Location Preference: {groupDetails?.preferences.location}</Text>
+        <Text>Grade Preference: {groupDetails?.preferences.grade}</Text>
+      </View>
+     
+     <View><Text style={styles.title}>Details Info:</Text></View>
+      <View style={styles.membersSection}> 
+        {renderMembers()}
+      </View>
       <TouchableOpacity style={styles.joinButton} onPress={handleLeaveGroup}>
         <Text style={styles.joinButtonText}>Leave Group</Text>
       </TouchableOpacity>
-
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
-
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>
-              {selectedMember
-                ? selectedMember.preferences
-                : "No preferences available."}
-            </Text>
-            <Button title="Close" onPress={() => setModalVisible(false)} />
-          </View>
-        </View>
-      </Modal>
+  animationType="slide"
+  transparent={true}
+  visible={modalVisible}
+  onRequestClose={() => setModalVisible(false)}
+>
+  <View style={styles.centeredView}>
+    <View style={styles.modalView}>
+      <Text style={styles.modalText}>
+        Specific Preference: {selectedMember?.specificPreference}
+      </Text>
+      <Button title="Close" onPress={() => setModalVisible(false)} />
+    </View>
+  </View>
+</Modal>
+
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

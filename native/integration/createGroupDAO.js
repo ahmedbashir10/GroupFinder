@@ -16,6 +16,20 @@ const createGroupDAO = async (userModel, preferencesModel) => {
     const courseID = userModel.getCourseID();
     const { grade, groupSize, location, specific } = preferencesModel.getPreferences();
 
+
+    const newMember = {
+      name,
+      email,
+      preferences: {
+        grade,
+        groupSize: {
+          min: groupSize.min, 
+          max: groupSize.max, 
+        },
+        location,
+        specific: specific, 
+      },
+    };
     const groupData = {
       groupName: groupName,
       name,
@@ -30,7 +44,7 @@ const createGroupDAO = async (userModel, preferencesModel) => {
         location,
         specific: specific, 
       },
-      members: [email],
+      members: [newMember],
       createdAt: new Date(),
     };
 
