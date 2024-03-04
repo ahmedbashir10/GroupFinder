@@ -471,34 +471,104 @@
 //   );
 // };
 
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+// import GroupDetailsPresenter from "../presenter/GroupDetailsPresenter";
+// import userModel from "../model/UserModel";
+
+// const GroupDetailsScreen = ({ navigation, route }) => {
+//   const [groupDetails, setGroupDetails] = useState(null);
+//   const { groupId } = route.params;
+
+//   // Define the presenter with the view methods
+//   const presenter = new GroupDetailsPresenter({
+//     updateGroupDetails: (details) => {
+//       // Update the state with the new group details
+//       setGroupDetails(details);
+//     },
+//     onJoinGroupSuccess: () => {
+//       // This callback will be invoked after the group join operation succeeds
+//       // Fetch the group details again to update the UI
+//       presenter.loadGroupDetails(groupId);
+//     },
+//     onJoinGroupError: (error) => {
+//       // This callback will be invoked if the group join operation fails
+//       alert("Failed to join group: " + error.message);
+//     },
+//   }, navigation);
+
+//   useEffect(() => {
+//     // Fetch the group details when the component mounts or groupId changes
+//     if (groupId) {
+//       presenter.loadGroupDetails(groupId);
+//     }
+//   }, [groupId]);
+
+//   const handleJoinGroup = async () => {
+//     await presenter.joinGroup(groupId, userModel);
+//   };
+
+//   // Render the list of members
+//   const renderMembers = () => {
+//     return groupDetails?.members.map((member, index) => (
+//       <View key={index} style={styles.memberItem}>
+//         <Text style={styles.memberName}>{member.name}</Text>
+//         <Text style={styles.memberEmail}>{member.email}</Text>
+//       </View>
+//     ));
+//   };
+
+//   // Define your styles here...
+
+//   return (
+//     <ScrollView style={styles.container}>
+//       <Text style={styles.title}>{groupDetails?.groupName || "Group Details"}</Text>
+//       <View style={styles.preferencesSection}>
+//         <Text>Location Preference: {groupDetails?.preferences.location}</Text>
+//         <Text>Grade Preference: {groupDetails?.preferences.grade}</Text>
+//       </View>
+//       <View style={styles.membersSection}>
+//         <Text style={styles.sectionTitle}>Details Info:</Text>
+//         {renderMembers()}
+//       </View>
+//       <TouchableOpacity style={styles.joinButton} onPress={handleJoinGroup}>
+//         <Text style={styles.joinButtonText}>Join Group</Text>
+//       </TouchableOpacity>
+//       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+//         <Text style={styles.backButtonText}>Back</Text>
+//       </TouchableOpacity>
+//     </ScrollView>
+//   );
+// };
+
+
+
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { ScrollView, View, Text, TouchableOpacity, Modal, Button, StyleSheet } from "react-native";
 import GroupDetailsPresenter from "../presenter/GroupDetailsPresenter";
 import userModel from "../model/UserModel";
 
 const GroupDetailsScreen = ({ navigation, route }) => {
   const [groupDetails, setGroupDetails] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
   const { groupId } = route.params;
 
-  // Define the presenter with the view methods
   const presenter = new GroupDetailsPresenter({
-    updateGroupDetails: (details) => {
-      // Update the state with the new group details
-      setGroupDetails(details);
-    },
+    updateGroupDetails: setGroupDetails,
     onJoinGroupSuccess: () => {
-      // This callback will be invoked after the group join operation succeeds
-      // Fetch the group details again to update the UI
       presenter.loadGroupDetails(groupId);
     },
     onJoinGroupError: (error) => {
-      // This callback will be invoked if the group join operation fails
       alert("Failed to join group: " + error.message);
     },
   }, navigation);
 
   useEffect(() => {
-    // Fetch the group details when the component mounts or groupId changes
     if (groupId) {
       presenter.loadGroupDetails(groupId);
     }
@@ -508,11 +578,19 @@ const GroupDetailsScreen = ({ navigation, route }) => {
     await presenter.joinGroup(groupId, userModel);
   };
 
-  // Render the list of members
+  const showModal = (member) => {
+    const specificPreference = member.preferences?.specific || 'No specific preference.';
+    setSelectedMember({ ...member, specificPreference });
+    setModalVisible(true);
+  };
+
   const renderMembers = () => {
     return groupDetails?.members.map((member, index) => (
       <View key={index} style={styles.memberItem}>
         <Text style={styles.memberName}>{member.name}</Text>
+        <TouchableOpacity onPress={() => showModal(member)} style={styles.infoButton}>
+          <Text style={styles.infoButtonText}>Info</Text>
+        </TouchableOpacity>
         <Text style={styles.memberEmail}>{member.email}</Text>
       </View>
     ));
@@ -537,9 +615,27 @@ const GroupDetailsScreen = ({ navigation, route }) => {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Text style={styles.backButtonText}>Back</Text>
       </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>
+              Specific Preference: {selectedMember?.specificPreference}
+            </Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
+
+
+
 
 const styles = StyleSheet.create({
   container: {
