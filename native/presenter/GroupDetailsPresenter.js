@@ -36,6 +36,7 @@
 import preferencesModel from '../model/PreferencesModel';
 import fetchGroupDetailsDAO from '../integration/fetchGroupDetailsDAO';
 import joinGroupDAO from '../integration/joinGroupDAO';
+import leaveGroupDAO from '../integration/leaveGroupDAO';
 
 class GroupDetailsPresenter {
   constructor(view, navigation) {
@@ -52,17 +53,7 @@ class GroupDetailsPresenter {
     }
   }
   
-  // async joinGroup(groupId, userModel) {
-  //   try {
-  //     const userPreferences = preferencesModel.getPreferences();
-  //     await joinGroupDAO(groupId, userModel, userPreferences);
-  //     this.view.onJoinGroupSuccess(); // Make sure this method exists in the view
-  //   } catch (error) {
-  //     console.error("Error joining group:", error);
-  //     this.view.onJoinGroupError(error); // Make sure this method exists in the view
-  //   }
-  // }
-
+ 
   async joinGroup(groupId, userModel) {
     try {
       const userPreferences = preferencesModel.getPreferences();
@@ -75,6 +66,18 @@ class GroupDetailsPresenter {
       this.view.onJoinGroupError(error);
     }
   }
+
+  async leaveGroup(groupId, userModel) {
+    try {
+      await leaveGroupDAO(groupId, userModel);
+      this.view.onLeaveGroupSuccess(); // Implement this callback in your view
+      this.navigation.navigate('CourseID');
+    } catch (error) {
+      console.error("Error leaving group:", error);
+      this.view.onLeaveGroupError(error); // Implement this callback in your view
+    }
+  }
+
 }
 
 export default GroupDetailsPresenter;

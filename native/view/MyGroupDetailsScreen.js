@@ -229,119 +229,6 @@
 
 
 
-// import React, { useState, useEffect } from "react";
-// import {
-//   View,
-//   Text,
-//   TouchableOpacity,
-//   ScrollView,
-//   Modal,
-//   Button,
-//   StyleSheet,
-// } from "react-native";
-// import GroupDetailsPresenter from "../presenter/GroupDetailsPresenter";
-
-// const MyGroupDetailsScreen = ({ navigation, route }) => {
-//   const [groupDetails, setGroupDetails] = useState(null);
-//   const [modalVisible, setModalVisible] = useState(false);
-//   const [selectedMember, setSelectedMember] = useState(null);
-//   const { groupId } = route.params;
-
-//   useEffect(() => {
-//     presenter = new GroupDetailsPresenter(
-//       {
-//         updateGroupDetails: setGroupDetails,
-//       },
-//       navigation
-//     );
-//     presenter.loadGroupDetails(groupId);
-//   }, [groupId]);
-
-//   const handleLeaveGroup = () => {
-//     presenter.leaveGroup();
-//   };
-//   console.log('Route parameters:', route.params);
-//   const showModal = (member) => {
-//     setSelectedMember({ preferences: groupDetails.preferences.specific });
-//     setModalVisible(true);
-//   };
-
-//   if (!groupDetails) {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Loading...</Text>
-//       </View>
-//     );
-//   }
-
-//   return (
-//     <ScrollView style={styles.container}>
-//       <Text style={styles.title}>{groupDetails.groupName}</Text>
-
-//       <View style={styles.preferencesSection}>
-//         <Text style={styles.preferenceItem}>
-//           Location Preference: {groupDetails.preferences.location}
-//         </Text>
-//         <Text style={styles.preferenceItem}>
-//           Grade Preference: {groupDetails.preferences.grade}
-//         </Text>
-//       </View>
-
-//       <View>
-//         <Text style={styles.title}>Details Info:</Text>
-//       </View>
-//       <View style={styles.membersSection}>
-//         {/* Display the group creator's name, email, and specific info */}
-//         <View style={styles.memberItem}>
-//           <Text style={styles.memberName}>{groupDetails.name}</Text>
-//           <TouchableOpacity onPress={showModal} style={styles.infoButton}>
-//             <Text style={styles.infoButtonText}>Info</Text>
-//           </TouchableOpacity>
-//           <Text style={styles.memberEmail}>{groupDetails.email}</Text>
-//         </View>
-//       </View>
-
-//       <Text style={styles.membersCount}>
-//         {`${groupDetails.members.length}/${groupDetails.preferences.groupSize.max} members joined`}
-//       </Text>
-
-//       <TouchableOpacity style={styles.joinButton} onPress={handleLeaveGroup}>
-//         <Text style={styles.joinButtonText}>Leave Group</Text>
-//       </TouchableOpacity>
-
-//       <TouchableOpacity
-//         style={styles.backButton}
-//         onPress={() => navigation.goBack()}
-//       >
-//         <Text style={styles.backButtonText}>Back</Text>
-//       </TouchableOpacity>
-
-//       <Modal
-//         animationType="slide"
-//         transparent={true}
-//         visible={modalVisible}
-//         onRequestClose={() => setModalVisible(false)}
-//       >
-//         <View style={styles.centeredView}>
-//           <View style={styles.modalView}>
-//             <Text style={styles.modalText}>
-//               {selectedMember
-//                 ? selectedMember.preferences
-//                 : "No preferences available."}
-//             </Text>
-//             <Button title="Close" onPress={() => setModalVisible(false)} />
-//           </View>
-//         </View>
-//       </Modal>
-//     </ScrollView>
-//   );
-// };
-
-
-
-
-
-
 import React, { useState, useEffect } from "react";
 import {
   ScrollView,
@@ -364,6 +251,15 @@ const MyGroupDetailsScreen = ({ navigation, route }) => {
   const presenter = new GroupDetailsPresenter(
     {
       updateGroupDetails: setGroupDetails,
+      onLeaveGroupSuccess: () => {
+        // Handle successful departure, e.g., show a message or navigate
+        alert('Successfully left the group.');
+        navigation.navigate('CourseID'); // Adjust as needed
+      },
+      onLeaveGroupError: (error) => {
+        // Handle the error, e.g., show an error message
+        alert("Failed to leave group: " + error.message);
+      },
     },
     navigation
   );
@@ -374,9 +270,12 @@ const MyGroupDetailsScreen = ({ navigation, route }) => {
     }
   }, [groupId]);
 
-  const handleLeaveGroup = () => {
-    // Leave group logic
-    navigation.navigate("MyGroup");
+  // const handleLeaveGroup = () => {
+  //   // Leave group logic
+  //   navigation.navigate("MyGroup");
+  // };
+  const handleLeaveGroup = async () => {
+    await presenter.leaveGroup(groupId, userModel);
   };
 
   const showModal = (member) => {
