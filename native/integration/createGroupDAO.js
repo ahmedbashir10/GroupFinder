@@ -4,12 +4,12 @@ import "firebase/compat/firestore";
 
 const createGroupDAO = async (userModel, preferencesModel) => {
   try {
-    // Fetch the current group count
+   
     const countRef = db.collection("metadata").doc("groupCount");
     const countDoc = await countRef.get();
     let groupCount = countDoc.exists ? countDoc.data().count : 0;
     
-    // Increment the group count and use it in the group name
+   
     const groupName = `Group ${groupCount + 1}`;
     const name = userModel.getName();
     const email = userModel.getUserEmail();
@@ -32,8 +32,8 @@ const createGroupDAO = async (userModel, preferencesModel) => {
     };
     const groupData = {
       groupName: groupName,
-      name,
-      email,
+      //name,
+      //email,
       courseID,
       preferences: {
         grade,
