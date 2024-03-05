@@ -246,9 +246,17 @@ const GroupDetailsScreen = ({ navigation, route }) => {
   const presenter = new GroupDetailsPresenter(
     {
       updateGroupDetails: setGroupDetails,
+
       onJoinGroupSuccess: () => {
         presenter.loadGroupDetails(groupId);
       },
+      onGroupFull: () => {
+        alert("This group is already full.");
+      },
+      onAlreadyMember: () => {
+        alert("You have already joined this group.");
+      },
+
       onJoinGroupError: (error) => {
         alert("Failed to join group: " + error.message);
       },
@@ -319,7 +327,7 @@ const GroupDetailsScreen = ({ navigation, route }) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
-              Specific Preference: {selectedMember?.specificPreference}
+               {selectedMember?.specificPreference}
             </Text>
             <Button title="Close" onPress={() => setModalVisible(false)} />
           </View>
@@ -336,27 +344,27 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 26, 
+    fontSize: 26,
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
     marginBottom: 20,
   },
   preferencesSection: {
-    backgroundColor: "white", 
+    backgroundColor: "white",
     padding: 15,
-    borderRadius: 10, 
+    borderRadius: 10,
     marginBottom: 20,
   },
   preferenceItem: {
-    fontSize: 18, 
+    fontSize: 18,
     color: "black",
     marginBottom: 10,
   },
   membersSection: {
-    backgroundColor: "white", 
+    backgroundColor: "white",
     padding: 15,
-    borderRadius: 10, 
+    borderRadius: 10,
     marginBottom: 20,
   },
   memberItem: {
@@ -366,15 +374,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   memberName: {
-    fontSize: 18, 
+    fontSize: 18,
     fontWeight: "bold",
     color: "black",
   },
-  infoButton: {
-    
-  },
+  infoButton: {},
   memberEmail: {
-    fontSize: 16, 
+    fontSize: 16,
     color: "gray",
   },
   membersCount: {
@@ -384,25 +390,25 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   joinButton: {
-    backgroundColor: "#4caf50", 
+    backgroundColor: "#4caf50",
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
     marginBottom: 10,
   },
   joinButtonText: {
-    fontSize: 20, 
+    fontSize: 20,
     color: "white",
     fontWeight: "bold",
   },
   backButton: {
-    backgroundColor: "#2196f3", 
+    backgroundColor: "#2196f3",
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
   },
   backButtonText: {
-    fontSize: 20, 
+    fontSize: 20,
     color: "white",
     fontWeight: "bold",
   },
@@ -410,7 +416,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", 
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalView: {
     backgroundColor: "white",
@@ -419,10 +425,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     elevation: 5,
-    width: "80%", 
+    width: "80%",
   },
   modalText: {
-    fontSize: 18, 
+    fontSize: 18,
     marginBottom: 15,
     textAlign: "center",
   },
