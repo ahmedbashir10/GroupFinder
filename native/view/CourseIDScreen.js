@@ -5,6 +5,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Alert,
   ScrollView,
 } from "react-native";
 import CourseIDPresenter from "../presenter/CourseIDPresenter";
@@ -127,7 +128,7 @@ const CourseIDScreen = ({ navigation }) => {
           if (inputValue) {
             presenter.saveCourseID(inputValue);
           } else {
-            console.log("Please enter or select a course ID");
+            Alert.alert("Course ID Required", "Please enter or select a course ID.");
           }
         }}
       >

@@ -6,7 +6,7 @@ const fetchGroupDetailsDAO = async (groupId) => {
     const doc = await groupRef.get();
 
     if (!doc.exists) {
-      console.log("No such document!");
+      console.log("No such groupdetails to fetch!");
       return null;
     }
 
