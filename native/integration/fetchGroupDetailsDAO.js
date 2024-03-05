@@ -1,17 +1,17 @@
 import { db } from "../dbConfig";
 
-
 const fetchGroupDetailsDAO = async (groupId) => {
   try {
     const groupRef = db.collection("groups").doc(groupId);
     const doc = await groupRef.get();
-    
+
     if (!doc.exists) {
-      console.log('No such document!');
+      console.log("No such document!");
       return null;
     }
 
     const groupData = doc.data();
+
     return {
       id: doc.id,
       ...groupData,

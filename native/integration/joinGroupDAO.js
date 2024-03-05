@@ -20,8 +20,6 @@
 
 // export default joinGroupDAO;
 
-
-
 import { db } from "../dbConfig";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
@@ -35,10 +33,10 @@ const joinGroupDAO = async (groupId, userModel, userPreferences) => {
   }
 
   const groupData = groupDoc.data();
+ // console.log("The groupData: " + JSON.stringify(groupData, null, 2));
+
   const userEmail = userModel.getUserEmail();
-  const isMember = groupData.members.some(
-    (member) => member.email === userEmail
-  );
+  const isMember = groupData.members.some((member) => member.email === userEmail);
 
   if (isMember) {
     return { status: "already_member" };

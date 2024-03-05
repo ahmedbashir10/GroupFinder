@@ -165,6 +165,7 @@
 
 // export default MatchResultsScreen
 
+
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import MatchResultsPresenter from "../presenter/MatchResultsPresenter";
@@ -172,12 +173,21 @@ import UserModel from "../model/UserModel";
 
 const MatchResultsScreen = ({ navigation }) => {
   const [matchingGroups, setMatchingGroups] = useState([]);
+  const [alertMessage, setAlertMessage] = useState("");
   const presenter = new MatchResultsPresenter(navigation); // Instantiate your presenter
+
 
   useEffect(() => {
     // Load matching groups when the component mounts
     presenter.loadMatchingGroups(UserModel.getCourseID(), setMatchingGroups);
   }, []);
+
+  useEffect(() => {
+    if (alertMessage) {
+      alert(alertMessage);
+      setAlertMessage(""); // Reset the alert message after displaying it
+    }
+  }, [alertMessage]);
 
   const handleNavigateToGroupDetails = (group) => {
     if (group && group.id) {
