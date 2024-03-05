@@ -1,15 +1,12 @@
-// import PreferencesModel from "../model/PreferencesModel";
 import preferencesModel from "../model/PreferencesModel";
 
 
 class PreferencesPresenter {
   constructor(navigation) {
     this.navigation = navigation;
-    // this.model = new PreferencesModel;
   }
 
   loadPreferences() {
-    // Load preferences and handle them if necessary
     return preferencesModel.getPreferences();
   }
 

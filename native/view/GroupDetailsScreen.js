@@ -336,27 +336,27 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 26, // Increased font size for the title
+    fontSize: 26, 
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
     marginBottom: 20,
   },
   preferencesSection: {
-    backgroundColor: "white", // White background for preference section
+    backgroundColor: "white", 
     padding: 15,
-    borderRadius: 10, // Rounded corners for the boxes
+    borderRadius: 10, 
     marginBottom: 20,
   },
   preferenceItem: {
-    fontSize: 18, // Increased font size for readability
+    fontSize: 18, 
     color: "black",
     marginBottom: 10,
   },
   membersSection: {
-    backgroundColor: "white", // White background for members section
+    backgroundColor: "white", 
     padding: 15,
-    borderRadius: 10, // Rounded corners for the boxes
+    borderRadius: 10, 
     marginBottom: 20,
   },
   memberItem: {
@@ -366,15 +366,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   memberName: {
-    fontSize: 18, // Increased font size for readability
+    fontSize: 18, 
     fontWeight: "bold",
     color: "black",
   },
   infoButton: {
-    // Assuming you have an info icon image or using a library like react-native-vector-icons
+    
   },
   memberEmail: {
-    fontSize: 16, // Slightly smaller font size for the email
+    fontSize: 16, 
     color: "gray",
   },
   membersCount: {
@@ -384,25 +384,25 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   joinButton: {
-    backgroundColor: "#4caf50", // Green background for the join button
+    backgroundColor: "#4caf50", 
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
     marginBottom: 10,
   },
   joinButtonText: {
-    fontSize: 20, // Larger font size for button text
+    fontSize: 20, 
     color: "white",
     fontWeight: "bold",
   },
   backButton: {
-    backgroundColor: "#2196f3", // Blue background for the back button
+    backgroundColor: "#2196f3", 
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
   },
   backButtonText: {
-    fontSize: 20, // Larger font size for button text
+    fontSize: 20, 
     color: "white",
     fontWeight: "bold",
   },
@@ -410,7 +410,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background for the modal overlay
+    backgroundColor: "rgba(0, 0, 0, 0.5)", 
   },
   modalView: {
     backgroundColor: "white",
@@ -419,10 +419,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     elevation: 5,
-    width: "80%", // Modal width
+    width: "80%", 
   },
   modalText: {
-    fontSize: 18, // Increased font size for readability
+    fontSize: 18, 
     marginBottom: 15,
     textAlign: "center",
   },

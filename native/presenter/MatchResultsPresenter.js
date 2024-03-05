@@ -11,7 +11,6 @@ export default class MatchResultsPresenter {
   async handleCreateGroup() {
     
       const groupId = await createGroupDAO(userModel, preferencesModel);
-     // await this.loadMatchingGroups("IV3280");
       this.navigation.navigate("MyGroup");
   }
 
@@ -31,39 +30,9 @@ export default class MatchResultsPresenter {
         );
       });
 
-      callback(matchingGroups); // Invoke the callback with the matching groups
+      callback(matchingGroups); 
     } catch (error) {
       console.error("Error loading matching groups:", error);
     }
   }
-
-  // async loadMatchingGroups(courseID) {
-  //   try {
-  //     const allGroups = await FindGroupsDAO.fetchGroupsByCourseID(courseID);
-  //     console.log("All groups:", allGroups); // Log all fetched groups
-  //     console.log(" "); 
-  //     const preferences = preferencesModel.getPreferences();
-  //     console.log("User preferences:", preferences); // Log the user's preferences
-
-  //     // Filtering logic based on preferences
-  //     const matchingGroups = allGroups.filter(group => {
-  //       const groupSize = group.members.length;
-  //       return (
-  //         (preferences.grade === "Flexible" || group.preferences.grade === preferences.grade) &&
-  //         groupSize >= parseInt(preferences.groupSize.min) &&
-  //         groupSize <= parseInt(preferences.groupSize.max) &&
-  //         (preferences.location === "Real-life" ? group.preferences.location !== "Remote" : true) &&
-  //         group.preferences.specific.toLowerCase().includes(preferences.specific.toLowerCase())
-  //       );
-  //     });
-
-  //     console.log("Matching groups:", matchingGroups); // Log the matching groups
-
-  //     // Instead of navigating right away, you might want to update state or handle the matches
-  //     // this.navigation.navigate("GroupDetails", { matchingGroups }); // Pass matchingGroups as a parameter
-
-  //   } catch (error) {
-  //     console.error("Error loading matching groups:", error);
-  //   }
-  // }
 }
