@@ -42,7 +42,7 @@ const PreferencesScreen = ({ navigation }) => {
     return;
   }
   
-  if (minSizeInt < 1 || maxSizeInt > 15) {
+  if (minSizeInt < 2 || maxSizeInt > 15) {
     Alert.alert("you need to provide the size values between 2 and 15"); 
     return;
   }

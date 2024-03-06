@@ -35,26 +35,28 @@ export default class MatchResultsPresenter {
     try {
       const allGroups = await FindGroupsDAO.fetchGroupsByCourseID(courseID);
       const preferences = preferencesModel.getPreferences();
-      // console.log("the preferences: " + JSON.stringify(preferences, null, 2));
-      const matchingGroups = allGroups.filter((group) => {
+      let matchingGroups = [];
+      let partialMatches = [];
+  
+      allGroups.forEach((group) => {
         const groupSize = group.members.length;
-        return (
-          (preferences.grade === "Flexible" ||
-            group.preferences.grade === preferences.grade) &&
-          groupSize >= parseInt(preferences.groupSize.min) &&
-          groupSize <= parseInt(preferences.groupSize.max) &&
-          (preferences.location === "Real-life"
-            ? group.preferences.location !== "Remote"
-            : true) &&
-          group.preferences.specific
-            .toLowerCase()
-            .includes(preferences.specific.toLowerCase())
-        );
+        const groupSizeMatch = groupSize >= parseInt(preferences.groupSize.min) && groupSize <= parseInt(preferences.groupSize.max);
+        const gradeMatch = preferences.grade === "Flexible" || group.preferences.grade === preferences.grade;
+        const locationMatch = preferences.location === "Real-life" ? group.preferences.location !== "Remote" : true;
+        const specificMatch = group.preferences.specific.toLowerCase().includes(preferences.specific.toLowerCase());
+  
+        if (gradeMatch && locationMatch && specificMatch && groupSizeMatch) {
+          matchingGroups.push(group); // Perfect match
+        } else if (groupSizeMatch && (gradeMatch || locationMatch || specificMatch)) {
+          group.partialMatch = true; // Partial match
+          partialMatches.push(group);
+        }
       });
-
-      callback(matchingGroups);
+  
+      callback({ matchingGroups, partialMatches });
     } catch (error) {
       console.error("Error loading matching groups:", error);
     }
   }
+  
 }
