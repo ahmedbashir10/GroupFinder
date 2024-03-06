@@ -92,6 +92,10 @@ const WelcomeScreen = ({ navigation }) => {
       return;
     }
 
+    if (/@/.test(name) || /\./.test(name)) {
+      Alert.alert('Invalid Name', 'Name must not contain "@" or ".".');
+      return;
+    }
     presenter.handleNameSubmit(name);
   };
 

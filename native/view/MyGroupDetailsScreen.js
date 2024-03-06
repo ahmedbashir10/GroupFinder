@@ -335,7 +335,7 @@ const renderMembers = () => {
   <View style={styles.centeredView}>
     <View style={styles.modalView}>
       <Text style={styles.modalText}>
-        Specific Preference: {selectedMember?.specificPreference}
+         {selectedMember?.specificPreference}
       </Text>
       <Button title="Close" onPress={() => setModalVisible(false)} />
     </View>
