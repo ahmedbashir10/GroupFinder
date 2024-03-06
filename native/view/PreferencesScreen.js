@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import PreferencesPresenter from "../presenter/PreferencesPresenter";
@@ -18,8 +19,8 @@ const PreferencesScreen = ({ navigation }) => {
     setPresenter(prefPresenter);
   }, [navigation]);
 
-  const [location, setLocation] = useState("remote");
-  const [grade, setGrade] = useState("flexible");
+  const [location, setLocation] = useState("");
+  const [grade, setGrade] = useState("");
   const [specificPreference, setSpecificPreference] = useState("");
   const [minSize, setMinSize] = useState("");
   const [maxSize, setMaxSize] = useState("");
@@ -29,6 +30,31 @@ const PreferencesScreen = ({ navigation }) => {
   }
 
   const handleFindMatch = () => {
+    const minSizeInt = parseInt(minSize, 10);
+  const maxSizeInt = parseInt(maxSize, 10);
+  
+  if (location === "") {
+    Alert.alert("You need to provide a location"); 
+    return;
+  }
+  if (grade === "") {
+    Alert.alert("You need to provide a grade"); 
+    return;
+  }
+  
+  if (minSizeInt < 2 || maxSizeInt > 15) {
+    Alert.alert("you need to provide the size values between 2 and 15"); 
+    return;
+  }
+  if (minSizeInt > maxSizeInt || maxSizeInt === minSizeInt) {
+    Alert.alert("Min size cannot be greater than or the same as max size."); 
+    return;
+  }
+
+  if (isNaN(minSizeInt) || isNaN(maxSizeInt)) {
+    Alert.alert("you need to provide Group size values numeric."); 
+    return;
+  }
     presenter.savePreferences(
       location,
       grade,
