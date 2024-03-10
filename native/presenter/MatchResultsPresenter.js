@@ -24,6 +24,7 @@ export default class MatchResultsPresenter {
         alert("You cannot create or join another group for the same course.");
       } else {
         const groupId = await createGroupDAO(userModel, preferencesModel);
+        alert("You have successfully created the group.");
         this.navigation.navigate("MyGroup");
       }
     } catch (error) {

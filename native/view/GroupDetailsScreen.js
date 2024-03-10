@@ -248,6 +248,7 @@ const GroupDetailsScreen = ({ navigation, route }) => {
       updateGroupDetails: setGroupDetails,
 
       onJoinGroupSuccess: () => {
+        alert("You have successfully joined the group.");
         presenter.loadGroupDetails(groupId);
       },
       onGroupFull: () => {
