@@ -41,3 +41,5 @@ jest.config.js
 
 # vscode
 .vscode
+
+.env
