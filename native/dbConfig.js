@@ -12,15 +12,15 @@ const firebaseConfig = {
   measurementId: "G-116KBEN2H6",
 }
 
+
+
 let Firebase;
 
 if (!firebase.apps.length) {
   Firebase = firebase.initializeApp(firebaseConfig);
 } else {
-  Firebase = firebase.app(); // if already initialized, use that one
+  Firebase = firebase.app(); 
 }
 
 export const db = Firebase.firestore();
 export const auth = firebase.firestore;
-
-// export default db;

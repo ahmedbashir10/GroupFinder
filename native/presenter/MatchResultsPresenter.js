@@ -42,13 +42,13 @@ export default class MatchResultsPresenter {
       allGroups.forEach((group) => {
         const groupSize = group.members.length;
         const groupSizeMatch = groupSize >= parseInt(preferences.groupSize.min) && groupSize <= parseInt(preferences.groupSize.max);
-        console.log(groupSizeMatch);
+        
         const gradeMatch = preferences.grade === "Flexible" || group.preferences.grade === preferences.grade;
         const locationMatch = preferences.location === "Real-life" ? group.preferences.location !== "Remote" : true;
         const specificMatch = group.preferences.specific.toLowerCase().includes(preferences.specific.toLowerCase());
-        console.log("rad 48");
+        
         if (gradeMatch && locationMatch && specificMatch) {
-          console.log("rad 50");
+         
           matchingGroups.push(group); // Perfect match
         } else if (gradeMatch || locationMatch || specificMatch) {
           console.log("rad 53");
